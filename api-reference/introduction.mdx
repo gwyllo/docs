@@ -1,33 +1,27 @@
 ---
 title: 'Introduction'
-description: 'Example section for showcasing API endpoints'
+description: 'Specifications for the Runchat API'
 ---
 
 <Note>
-  If you're not looking to build API reference documentation, you can delete
-  this section by removing the api-reference folder.
+  The Runchat API allows you to use Runchat as a backend for other third party applications. The API is used by integrations like our Rhino and Grasshopper plugin.
 </Note>
 
 ## Welcome
 
-There are two ways to build API documentation: [OpenAPI](https://mintlify.com/docs/api-playground/openapi/setup) and [MDX components](https://mintlify.com/docs/api-playground/mdx/configuration). For the starter kit, we are using the following OpenAPI specification.
-
-<Card
-  title="Plant Store Endpoints"
-  icon="leaf"
-  href="https://github.com/mintlify/starter/blob/main/api-reference/openapi.json"
->
-  View the OpenAPI specification file
-</Card>
+The Runchat API allows you to run Runchats on arbitrary schedules, post data to Webhook nodes or trigger a workflow by providing inputs to specific parameters. 
+The `Schema` endpoint allows you to retrieve an array of published parameter IDs for a given Runchat. You can then map over input parameter IDs to create the required inputs array for the `Run` endpoint.
 
 ## Authentication
 
-All API endpoints are authenticated using Bearer tokens and picked up from the specification file.
+The Runchat API uses keys to authenticate requests to the API on behalf of your runchat user profile and account. 
+Runchat API keys can only be used to authenticate requests to endpoints, and cannot be used to download or access any information about your user profile or account. 
+However, we still recommend you keep these keys secure and cycle them frequently.
+
+To create an API key head to https://runchat.app/dashboard/keys. Scroll to the bottom of the page to the Runchat API Keys section and click Create New Key. Copy the generated key and store it somewhere securely. 
+
+All API endpoints are authenticated using the Authorization header and a Bearer token.
 
 ```json
-"security": [
-  {
-    "bearerAuth": []
-  }
-]
+"Authorization": `Bearer ${YOUR_API_KEY}`
 ```

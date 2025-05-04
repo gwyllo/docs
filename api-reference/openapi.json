@@ -1,16 +1,14 @@
 {
   "openapi": "3.1.0",
   "info": {
-    "title": "OpenAPI Plant Store",
-    "description": "A sample API that uses a plant store as an example to demonstrate features in the OpenAPI specification",
-    "license": {
-      "name": "MIT"
-    },
+    "title": "Runchat API",
+    "description": "API for executing Runchat flows and retrieving schema information.",
     "version": "1.0.0"
   },
   "servers": [
     {
-      "url": "http://sandbox.mintlify.com"
+      "url": "https://runchat.app/api/v1",
+      "description": "Relative path for the API endpoints"
     }
   ],
   "security": [
@@ -19,134 +17,189 @@
     }
   ],
   "paths": {
-    "/plants": {
-      "get": {
-        "description": "Returns all plants from the system that the user has access to",
-        "parameters": [
-          {
-            "name": "limit",
-            "in": "query",
-            "description": "The maximum number of results to return",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
+    "/{id}": {
+      "parameters": [
+        {
+          "name": "runchat_id",
+          "in": "path",
+          "required": true,
+          "description": "The unique identifier for the Runchat flow.",
+          "schema": {
+            "type": "string"
           }
-        ],
+        }
+      ],
+      "get": {
+        "summary": "Retrieve Scheduled Inputs",
+        "description": "Retrieves the data for nodes configured as scheduled inputs within a Runchat flow. This does not create or use a specific instance.",
+        "tags": ["Execution"],
         "responses": {
           "200": {
-            "description": "Plant response",
+            "description": "Successful retrieval of scheduled input data.",
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Plant"
+                  "type": "object",
+                  "properties": {
+                    "metadata": {
+                      "type": "string",
+                      "format": "json",
+                      "description": "Stringified JSON containing execution metadata."
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/ScheduledOutputData"
+                      },
+                      "description": "Array of output data from scheduled input nodes."
+                    }
                   }
                 }
               }
             }
           },
           "400": {
-            "description": "Unexpected error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
           }
         }
       },
       "post": {
-        "description": "Creates a new plant in the store",
+        "summary": "Execute Runchat Flow",
+        "description": "Executes a Runchat flow by creating a new instance or continuing an existing one. Requires input data matching the flow's API inputs or a webhook structure.",
+        "tags": ["Execution"],
         "requestBody": {
-          "description": "Plant to add to the store",
+          "description": "Input data for the Runchat execution. Provide `runchat_instance_id` to continue an existing execution. The `inputs` object structure should match the parameters defined in the Runchat API schema, keyed by `paramId_nodeId`. Alternatively, send raw data for webhook-triggered flows.",
+          "required": false,
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/NewPlant"
+                "$ref": "#/components/schemas/ExecutionRequest"
+              },
+              "examples": {
+                "apiInput": {
+                  "summary": "Example with API Inputs",
+                  "value": {
+                    "runchat_instance_id": "existing-instance-uuid",
+                    "inputs": {
+                      "prompt_xyz123": "Generate a story about a robot.",
+                      "maxTokens_abc456": [100]
+                    }
+                  }
+                },
+                "webhookInput": {
+                  "summary": "Example with Webhook Data",
+                  "value": {
+                    "runchat_instance_id": "new-or-existing-instance-uuid",
+                    "event": "user_created",
+                    "user_id": "usr_789",
+                    "timestamp": "2024-01-01T12:00:00Z"
+                  }
+                },
+                "newInstance": {
+                  "summary": "Example Creating New Instance",
+                  "value": {
+                    "inputs": {
+                      "query_nodeA": "What is the weather?"
+                    }
+                  }
+                }
               }
             }
-          },
-          "required": true
+          }
         },
         "responses": {
           "200": {
-            "description": "plant response",
+            "description": "Successful execution of the Runchat flow.",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Plant"
+                  "type": "object",
+                  "properties": {
+                    "metadata": {
+                      "type": "string",
+                      "format": "json",
+                      "description": "Stringified JSON containing execution metadata."
+                    },
+                    "runchat_instance_id": {
+                      "type": "string",
+                      "description": "The unique identifier for the Runchat instance to be used. If omitted a new instance will be created."
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/BasicParameter"
+                      },
+                      "description": "Array of output data from the executed nodes."
+                    }
+                  }
                 }
               }
             }
           },
           "400": {
-            "description": "unexpected error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
           }
         }
       }
     },
-    "/plants/{id}": {
-      "delete": {
-        "description": "Deletes a single plant based on the ID supplied",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "ID of plant to delete",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int64"
-            }
+    "/{id}/schema": {
+      "parameters": [
+        {
+          "name": "runchat_id",
+          "in": "path",
+          "required": true,
+          "description": "The unique identifier for the Runchat. The Runchat ID can be found in the id parameter of the URL when open in the editor.",
+          "schema": {
+            "type": "string"
           }
-        ],
+        }
+      ],
+      "get": {
+        "summary": "Get Runchat Schema",
+        "description": "Retrieves the defined API input and output parameters for a specific Runchat flow.",
+        "tags": ["Schema"],
         "responses": {
-          "204": {
-            "description": "Plant deleted",
-            "content": {}
-          },
-          "400": {
-            "description": "unexpected error",
+          "200": {
+            "description": "Successful retrieval of the Runchat schema.",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Error"
+                  "type": "object",
+                  "properties": {
+                    "inputs": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/BasicParameter"
+                      },
+                      "description": "Array of input parameters defined in the Runchat API."
+                    },
+                    "outputs": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/BasicParameter"
+                      },
+                      "description": "Array of output parameters defined in the Runchat API."
+                    },
+                    "name": {
+                      "type": "string",
+                      "description": "The name of the Runchat flow."
+                    }
+                  }
                 }
               }
             }
-          }
-        }
-      }
-    }
-  },
-  "webhooks": {
-    "/plant/webhook": {
-      "post": {
-        "description": "Information about a new plant added to the store",
-        "requestBody": {
-          "description": "Plant added to the store",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/NewPlant"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Return a 200 status to indicate that the data was received successfully"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
           }
         }
       }
@@ -154,55 +207,134 @@
   },
   "components": {
     "schemas": {
-      "Plant": {
-        "required": [
-          "name"
+      "DataTypes": {
+        "type": "string",
+        "enum": [
+          "string",
+          "number",
+          "boolean",
+          "object",
+          "image",
+          "video",
+          "audio",
+          "model",
+          "message",
+          "context",
+          "code",
+          "array",
+          "instruction",
+          "null",
+          "markdown",
+          "file",
+          "format",
+          "html",
+          "pdf",
+          "trigger",
+          "select"
         ],
+        "description": "Enumeration of supported data types within Runchat."
+      },
+      "BasicParameter": {
         "type": "object",
         "properties": {
-          "name": {
-            "description": "The name of the plant",
-            "type": "string"
+          "id": {
+            "type": "string",
+            "description": "Unique identifier for the parameter, often in the format 'paramKey_parentNodeId'."
           },
-          "tag": {
-            "description": "Tag to specify the type",
-            "type": "string"
+          "label": {
+            "type": "string",
+            "description": "User-friendly label for the parameter."
+          },
+          "type": {
+            "$ref": "#/components/schemas/DataTypes"
+          },
+          "description": {
+            "type": "string",
+            "description": "Description of the parameter."
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "description": "Represents a single data item, type varies based on the parameter's 'type' field."
+            },
+            "description": "The actual data associated with the parameter, represented as an array of items."
           }
-        }
+        },
+        "required": ["id", "label", "type", "description", "data"]
       },
-      "NewPlant": {
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/Plant"
+      "ScheduledOutputData": {
+        "type": "object",
+        "description": "Structure for data returned by the GET /{runchat_id} endpoint.",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Identifier of the output parameter."
           },
-          {
-            "required": [
-              "id"
-            ],
-            "type": "object",
-            "properties": {
-              "id": {
-                "description": "Identification number of the plant",
-                "type": "integer",
-                "format": "int64"
-              }
-            }
+          "data": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "description": "Represents a single data item."
+            },
+            "description": "Array containing the data items for this output."
           }
-        ]
+        },
+        "required": ["id", "data"]
+      },
+      "ExecutionRequest": {
+        "type": "object",
+        "description": "Request body for executing a Runchat flow.",
+        "properties": {
+          "runchat_instance_id": {
+            "type": "string",
+            "description": "Optional identifier to continue an existing Runchat instance."
+          },
+          "inputs": {
+            "type": "object",
+            "additionalProperties": {
+              "oneOf": [
+                { "type": "string" },
+                { "type": "number" },
+                { "type": "boolean" },
+                { "type": "array", "items": {} },
+                { "type": "object" }
+              ]
+            },
+            "description": "Object containing input data keyed by 'paramId_nodeId'. Values can be primitive types, arrays, or structured objects for tree/list inputs (e.g., {\"0\": [...], \"0:1\": [...]})."
+          }
+        },
+        "additionalProperties": true
       },
       "Error": {
-        "required": [
-          "error",
-          "message"
-        ],
         "type": "object",
         "properties": {
           "error": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "message": {
-            "type": "string"
+            "type": "string",
+            "description": "A message describing the error."
+          }
+        },
+        "required": ["error"]
+      }
+    },
+    "responses": {
+      "BadRequest": {
+        "description": "Bad Request - The request could not be understood or was missing required parameters.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      },
+      "InternalServerError": {
+        "description": "Internal Server Error - An unexpected error occurred on the server.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
           }
         }
       }
@@ -210,8 +342,19 @@
     "securitySchemes": {
       "bearerAuth": {
         "type": "http",
-        "scheme": "bearer"
+        "scheme": "bearer",
+        "description": "Bearer token authentication using Runchat API key. API keys can be created at https://runchat.app/dashboard/keys"
       }
     }
-  }
+  },
+  "tags": [
+    {
+      "name": "Execution",
+      "description": "Endpoints related to running Runchat flows."
+    },
+    {
+      "name": "Schema",
+      "description": "Endpoints for retrieving Runchat flow structure and definitions."
+    }
+  ]
 }

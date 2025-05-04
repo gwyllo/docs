@@ -1,0 +1,34 @@
+---
+title: 'Webhooks'
+description: 'Send JSON data to Runchats from anywhere on the internet'
+---
+
+Runchat’s API allows developers to run tools by providing data in the format specified by the tool’s io schema. You can also send arbitrary data in any format to any Runchat using the `Run` endpoint and then retrieve this data in the `webhook` input type. 
+
+## Use cases
+
+Webhooks can be used to trigger Runchats when certain events happen in other applications. For instance, webhooks can be used to build things like:
+
+- Event: Whenever a customer is created in stripe, stripe triggers your webhook
+Runchat: Get stripe data, save it to a google sheet and post to slack
+- Event: Whenever someone fills in a typeform
+Runchat: Create a task to determine who on a support team is best suited to the ticket or complete a round-robin assignment, then send them an email with a summary of the form.
+
+Because posting data to a webhook will trigger a runchat, webhooks can also be used to orchestrate complex asynchronous tasks. These include tasks that might require waiting for input such as:
+
+- Event: A runchat requires human approval before continuing a task, so emails the user a link to a form
+Action: When the user completes the form, trigger the same runchat with new data to continue the task.
+
+## Working with webhooks
+
+To use webhooks in your Runchat, you will need to add a `Webhook` node from the `Inputs` menu. You can add multiple webhook nodes to your runchat, and this can be used to control execution flow. All nodes downstream from a webhook node will be triggered when you make a `POST` request to the `Run` endpoint. Anything that is not downstream from a webhook node will *not* be triggered. 
+
+## Saving data to Google Sheets with webhooks
+
+A simple example of working with webhooks is setting up an endpoint that saves arbitrary data to a Google Sheet. This is also convenient for testing your webhook and making sure you’ve configured all of your execution flows and data types correctly. 
+
+https://www.runchat.app/editor?id=86751e7d-5396-4ca9-b1c2-6a1d18b475ad
+
+To run this Runchat, you’ll need to first [authorize Google Sheets](https://www.notion.so/Read-and-Write-to-Google-Sheets-17f2742769ce8055930ddcd04fb417e8?pvs=21) from the Runchat Dashboard. The runchat itself is very simple - we have a `Webhook` node connected to the data input of the `Write Sheet` node from the Google Sheets library. 
+
+You can try triggering this webhook from anywhere on the internet by making a post request to the endpoint url listed on the webhook node. Your post request will need to include your Runchat API key in the header using the `Authorization` key. You can include anything you like in the body, so long as it is valid JSON.
