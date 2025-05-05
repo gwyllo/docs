@@ -1,0 +1,17 @@
+---
+title: 'Write to New Rows'
+description: 'Appends data to new rows in a Google Sheet with the given ID.'
+---
+
+## Overview
+
+This Runchat appends data provided as a list of objects to the first empty row(s) in a specified Google Sheet. It requires the Sheet ID and the data to be appended.
+
+## Inputs
+
+*   **sheetId** (`string`): The ID of the Google Sheet to write to.
+*   **data** (`list` of `string`): A list of JSON strings, where each string represents an object to be written as a row. This data is typically formatted by the 'Formatter' Runchat first.
+
+## Outputs
+
+*   **response_3** (`object`): The response from the Google Sheets API append operation, containing details like the number of updated rows, cells, columns, and the range updated.

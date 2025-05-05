@@ -1,0 +1,113 @@
+---
+title: "Code"
+description: "Run javascript code in a sandbox"
+---
+
+# Code Editor
+
+Runchat uses Prism for code highlighting, and provides a very basic auto-formatter for line indentations with `Ctrl+f`. You can write regular old Javascript in the black code input field with a couple of caveats:
+
+- Your code must always return a value.
+- You cannot use any external libraries or modules
+- You cannot make external requests
+
+If you need to make external requests, use the `API Node` instead. If you need to use external libraries, write these as cloud functions using an external service such as Google Cloud Console and call these with the `API Node`. 
+
+<Info>
+Why can’t I do **x** with the code node? 
+
+Most Runchats use the code node in some way, often nested several nodes deep for doing various forms of data formatting and manipulation. It is crucial that this code cannot make any changes to your data or pc without your knowledge. By sandboxing all code and preventing access to modules and external requests we can provide a secure environment for running untrusted code without risking breaches. 
+
+</Info>
+
+# Inputs and Outputs
+
+The default input to the `Code` node is called `inputData`. You can refer to this parameter by name in your code. You can add additional parameters using the [Parameter Manager](https://www.notion.so/Input-Parameter-Manager-d8ade639e3954ec9b6f91e3c4603e585?pvs=21). For instance, to simply pass the input value through to the output, you can run: 
+
+```jsx
+return inputData;
+```
+
+The code node will attempt to match the output data type to a suitable component for rendering. This makes the code node useful for controlling how your data is displayed in the Editor and App views. The code node can detect and render: 
+
+- Youtube videos
+- Spotify links
+- 3D Models (.gltf links)
+- Websites (HTML)
+- Markdown
+- JSON Objects
+
+# Common Errors
+
+The sandbox environment will always run your code as a function and expect a return value. If your code does not return anything the node will throw an error: 
+
+```jsx
+"undefined" is not valid JSON
+```
+
+# Generating code in the Code Editor
+
+When you generate code within the code node, the language model has access to the following properties of the node to improve the likelihood of writing code that is bug free and useful: 
+
+- The names of all input parameters
+- The first data item for each input parameter (or List of items if the parameter uses List matching)
+- All existing code in the editor
+- Knowledge of constraints e.g. that code is executed in a sandbox and cannot use external libraries
+
+When you press the `Generate` button, the language model will look for any comments or instructions within the code editor and then attempt to implement these for you with the model selected in the code node settings. 
+
+## Selecting a model for Code Generation
+
+The code generation will use the model you have set as your default in [runchat.app/dashboard/models](http://runchat.app/dashboard/models). For more complex code functionality you may want to select a slower reasoning model to improve code quality. You can change the selected model in the code node Settings. 
+
+## Generating new scripts
+
+<img src="/images/newscript.gif" style={{ borderRadius: '0.5rem' }} />
+
+*The generated code knows enough about our input data to use the correct properties and inputs*
+
+If you are starting a new script from scratch, you can write a plain english description of what you want your code to do directly into the code editor and then press `Generate` to have the language model attempt to implement it for you. Keep your instructions simple, precise and easy to test. For the most part, generating code works best for simple data formatting and filtering tasks.
+
+## Improving existing scripts
+
+<img src="/images/improvescript.gif" style={{ borderRadius: '0.5rem' }} />
+
+*Adding functionality to the `Get Key` node to also return values at array indexes*
+
+You can also add to and improve existing code. Simple add a clear direction anywhere in the code editor for what you want the language model to do, and then click generate. Keep requests simple, precise and easy to test.
+
+# Parameter Manager
+You can manually add input parameters to the code node from the node settings to simplify data matching tasks within your js functions.
+
+The code node has a single `inputData` input parameter by default, and developers can specify whether this data should be processed item by item, list by list, or as a single data tree object. If you set data to be processed as a list then you can connect multiple inputs to the `inputData` parameter and then access these through array index notation e.g. `inputData[1]`. Alternatively, you can add multiple parameters using the parameter manager and access each of these within your js functions by referencing the parameter names. 
+
+## Adding and removing parameters
+
+You can name and add additional input parameters from the Code Node settings. Click the + icon to add a parameter, and the x icon to remove it. You can specify the name of your parameter as well as the data type that you want to cast any input to. This alleviates the need to perform type checks inside of your js code, as Runchat will handle this for you before the code is run. After you have added at least one new parameter, you can remove the `inputData` parameter if you wish. It is not possible to remove all input parameters. 
+
+After adding a parameter it will appear on the left side of the node in alphabetical order. 
+
+## Accessing parameters
+
+All parameters to the code node are zipped and then passed to your script. [You can specify whether individual items or lists should be zipped by toggling these values on the parameters themselves.](https://www.notion.so/Data-Access-f190b6fe7649435b8212b9f6baca09b4?pvs=21) You can access each parameter value in your script by referring to the parameter name.
+
+If your parameter is set to List access, then you can also access items through array indexing.
+
+```jsx
+param_1 (item access): [1,2,3], param_2 (item access): ["some text","some other text"]
+
+return [param_1, param_2]
+//Page 1 result [1,"some text"]
+//Page 2 result [2, "some other text"]
+//Page 3 result [3, "some other text"]
+
+param_1 (list access): [1,2,3], param_2 (item access): ["some text","some other text"]
+
+return [param_1,param_2]
+//Page 1 result [[1,2,3],"some text"]
+//etc
+
+return param_1[0]
+//Page 1 result [1] - returns first item in the param_1 list
+//etc
+```

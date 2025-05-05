@@ -1,4 +1,19 @@
 ---
 title: 'Write Sheet'
-description: 'Write to a Google Sheet'
+description: 'Writes data to a specific range in a Google Sheet, potentially overwriting existing data.'
 ---
+
+## Overview
+
+This Runchat writes data (formatted as a 2D array, typically via the 'Formatter' Runchat) to a specified range within a Google Sheet. Unlike "Write to New Rows", this can overwrite existing data within the specified range.
+
+## Inputs
+
+*   **sheetId** (`string`): The ID of the Google Sheet to write to.
+*   **range** (`string`): The A1 notation of the range to write to (e.g., "Sheet1!A1:Z", "A:Z").
+*   **data** (`list` of `string`): A list of JSON strings, where each string represents an object to be written. This is typically connected to the 'Formatter' Runchat.
+*   **includeHeaders** (`boolean`): Parameter passed to the internal 'Formatter' to determine if headers should be included in the data written to the sheet.
+
+## Outputs
+
+*   **response** (`object`): The response from the Google Sheets API update operation, containing details like the number of updated rows, cells, columns, and the range updated.

@@ -1,0 +1,17 @@
+---
+title: 'Sort Headers'
+description: 'Aligns the keys of an input data object with the headers read from a Google Sheet.'
+---
+
+## Overview
+
+This utility Runchat is likely used internally within other Sheets Runchats. It seems designed to take data intended for writing and ensure its keys (columns) match the order of headers read from an existing sheet, preparing it for consistent updates.
+
+## Inputs
+
+*   **readSheet** (`object`): An object presumably containing the data read from a Google Sheet, including headers (e.g., the output of "Read Sheet").
+*   **data** (`object`): The data object that needs its keys/values reordered to match the `readSheet` headers.
+
+## Outputs
+
+*   **result** (`object`): The input `data` object, potentially with its key-value pairs reordered to match the header order from the `readSheet` input.

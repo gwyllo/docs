@@ -3,3 +3,28 @@ title: "Runchat"
 description: "Run a runchat workflow in Grasshopper"
 ---
 
+<img src="/images/runchatgh.png" style={{ borderRadius: '0.5rem' }} />
+
+**Input and Output Parameters**
+
+These will be set to whatever you have published with the ⚡ in your Runchat. All data will be cast to a string. If your runchat returns a JSON object, use the `JSwan` plugin to deserialize it and grab the properties in Grasshopper.
+
+**Load New Runchat**
+
+You can reset the component back to its initial state (with a single `ID` parameter) to load a new runchat from the right click menu
+
+**Clear History**
+
+By default when you first run the component it will create a new instance (copy) of your Runchat. Every subsequent run will use that same copy and your runchat will be able to reference the previous state (e.g. using a Loop node to build chat history). If you want to reset to a new instance, click `Clear History` from the right click menu.
+
+**Open Documentation**
+
+You can launch the docs (this site) from the link in the right click menu.
+
+**Create New API Key**
+
+This will launch [runchat.app/dashboard/keys](http://runchat.app/dashboard/keys) so you can easily copy or create your API key.
+
+**Set API Key**
+
+Enter your API key here and click Commit Changes to save it. It will be saved as a local environment variable so you don’t need to set it again on your local PC.

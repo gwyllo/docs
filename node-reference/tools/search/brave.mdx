@@ -1,4 +1,21 @@
 ---
 title: 'Brave Search'
-description: 'Search the web and return results using the Brave API'
+description: 'Searches the web using the Brave Search API.'
 ---
+
+## Overview
+
+This Runchat performs a web search using the Brave Search API and returns a structured JSON response containing web and potentially video results.
+
+## Inputs
+
+*   **query** (`string`): The search term or query string.
+*   **count** (`number`): The desired number of search results to return (max 20).
+
+## Outputs
+
+*   **response** (`object`): A JSON object containing the search results from Brave. Key components include:
+    *   `query`: Details about the processed query.
+    *   `web`: Contains an array `results` with web page details (URL, title, description, snippets, metadata).
+    *   `videos`: (If applicable) Contains an array `results` with video details.
+    *   `mixed`: An array indicating the order in which different result types (web, videos, etc.) should be displayed.

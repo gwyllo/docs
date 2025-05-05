@@ -1,0 +1,18 @@
+---
+title: 'Check Data Exists'
+description: 'Searches for the existence of data in a sheet. Returns true if found, false otherwise.'
+---
+
+## Overview
+
+This Runchat searches a specified range within a Google Sheet for a given search term. It returns a boolean value indicating whether the term was found.
+
+## Inputs
+
+*   **sheetId** (`string`): The ID of the Google Sheet to search within.
+*   **range** (`string`): The A1 notation of the range to search (e.g., "Sheet1!A1:ZZ", "A:ZZ").
+*   **searchTerm** (`string`): The specific text value to search for within the specified range.
+
+## Outputs
+
+*   **result** (`boolean`): Returns `true` if the `searchTerm` is found anywhere within the specified `range` of the sheet, and `false` otherwise.

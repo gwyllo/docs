@@ -1,0 +1,22 @@
+---
+title: "Parameters"
+description: "Automatically generate output parameters based on node content"
+---
+
+Runchat supports automatically generating output parameters from object keys to easily define parametric relationships between nodes.
+
+# Creating Parameters
+
+Runchat enables parameters to be generated from `object` datatypes. When you enable creating new parameters from the `Code` or `Prompt` node, Runchat will generate a new output parameter for each key in the object. An `object` can be created using the `Object Input` , generated from the prompt node or generated from the code node.
+
+# Creating Parameters in the Code Node
+
+Expand the settings on the Code Node and check `Create New Parameters` . The next time the node is run, runchat will check if the first item in the output is an `object`, and if it is will create output parameters for each key. 
+
+# Creating Parameters in the Prompt Node
+
+You will only see the option to create new parameters when you specify an `object` type as the `Format` for the prompt output. Specify the `object` type then scroll down to the settings and and check `Create New Parameters` . The next time the node is run, runchat will check if the first item in the output is an `object`, and if it is will create output parameters for each key. 
+
+# Dynamically publishing parameters
+
+Because parameters are generated dynamically developers will not be able to manually set which parameters are exposed to the user. Instead, all parameters can be published by enabling the `Publish All` option in the code node settings.

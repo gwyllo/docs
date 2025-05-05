@@ -2,10 +2,21 @@
 title: 'Data Matching'
 description: 'Learn how Runchat approaches matching data from multiple parameters'
 ---
+When a node has multiple input parameters Runchat will try to match data from each parameter during the calculation. 
+Some input parameters allow you to control whether data matching should be applied to each item individually, or to a merged list of all items.
 
+### Each Item
+
+Individual items will be passed to the script independently of one another. This is primarily useful for avoiding boilerplate for-each iterators within your scripts. 
+
+### Merge Items
+
+When you connect multiple inputs to the `inputData` parameter, all of these are passed as single object to your script where they can be accessed with array indexing.
+
+# Data Matching Heuristics
 When a node has multiple input parameters, runchat will attempt to match input data following common sense heuristics.
 
-# Single Input / Single Item
+### Single Input / Single Item
 
 When a node only has a single parameter with a single item, then no data matching is required. The node will process this single input and (unless you are writing custom code or making an api call that returns multiple things) return a single output. 
 
@@ -13,7 +24,7 @@ When a node only has a single parameter with a single item, then no data matchin
 For example: When you plug a text input into the prompt of an Image node, you generate one image
 </Card>
 
-# Single Input / Multiple Items
+### Single Input / Multiple Items
 
 When a node has a single parameter but you connect multiple input items, then the node will attempt to process each item and output the same data structure. E.g. If you connect a list of items then you will get a list out. If you connect a datatree of items, you will get a datatree out. 
 
@@ -27,7 +38,7 @@ This seems simple but already we are needing to apply heuristics. In some cases 
 For example: When you write some text that defines a style and some text that defines some content for an image, and connect them to the prompt of an Image node. Perhaps you want to make a single image from the combined text? (If this is the case, concatenate the text first)
 </Card>
 
-# Multiple Inputs / Same number of items
+### Multiple Inputs / Same number of items
 
 When a node has multiple input parameters and you provide the same number of items to each, then the node will attempt to ‘zip’ these inputs together for processing. This means processing the first item for each parameter, then the second item, then the third and so on. 
 
@@ -41,7 +52,7 @@ For example: When you plug in some text for a prompt and some text for a context
 
 </Warning>
 
-# Multiple Inputs / Different number of items
+### Multiple Inputs / Different number of items
 
 When a node has multiple input parameters and you provide a different number of items for each, then the node will zip inputs when matching items are found, and then use the last available item for a parameter if no matching items are found.
 

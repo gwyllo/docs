@@ -1,4 +1,17 @@
 ---
 title: 'SerpAPI Search'
-description: 'Search the web and return results using engines supported by SerpAPI'
+description: 'Performs searches across various Google services (Scholar, Images, News, etc.) using SerpAPI.'
 ---
+
+## Overview
+
+This Runchat acts as an interface to the SerpAPI service, allowing searches across different Google platforms like Google Scholar, Google Images, Google News, YouTube, and standard Google search (google_light).
+
+## Inputs
+
+*   **engine** (`select`): The specific search engine endpoint to use within SerpAPI (e.g., "google_scholar", "google_images", "google_news", "youtube", "google_light").
+*   **query** (`string`): The search term or query string for the selected engine.
+
+## Outputs
+
+*   **response** (`object`): The raw JSON response returned by the SerpAPI for the specified engine and query. The structure varies significantly based on the chosen engine but typically includes search metadata, pagination info, and organic results.

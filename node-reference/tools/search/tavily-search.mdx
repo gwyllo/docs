@@ -1,4 +1,18 @@
 ---
 title: 'Tavily Search'
-description: 'Search the web and return results using the Tavily Search API'
+description: 'Performs a web search using the Tavily API based on a query.'
 ---
+
+## Overview
+
+This Runchat utilizes the Tavily Search API to perform web searches. It allows specifying the search depth and optionally limiting the search to specific domains.
+
+## Inputs
+
+*   **query** (`string`): The search query to be executed.
+*   **searchDepth** (`select`): Options are "basic" or "advanced". Determines the depth and thoroughness of the search.
+*   **domains** (`string`): A comma-separated list of domains to restrict the search to (e.g., "example.com,anothersite.org"). Leave blank to search the entire web.
+
+## Outputs
+
+*   **response** (`object`): The JSON response from the Tavily API, typically including the original query, search results (with URLs, titles, snippets/content, scores), response time, and potentially related follow-up questions.

@@ -1,4 +1,17 @@
 ---
 title: 'Read Sheet'
-description: 'Read the contents of a Google Sheet'
+description: 'Reads data from a specified range in a Google Sheet.'
 ---
+
+## Overview
+
+This Runchat reads the values from a given range within a specified Google Sheet.
+
+## Inputs
+
+*   **sheetId** (`string`): The ID of the Google Sheet to read from.
+*   **range** (`string`): The A1 notation of the range to read (e.g., "Sheet1!A1:Z", "A:ZZ").
+
+## Outputs
+
+*   **response** (`object`): The response from the Google Sheets API get operation. Contains the `range` read, the `majorDimension` (usually "ROWS"), and a `values` key holding a 2D array of the data read from the sheet.

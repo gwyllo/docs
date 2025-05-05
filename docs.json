@@ -32,6 +32,10 @@
                 ]
               },
               {
+                "group": "Nodes",
+                "pages": ["concepts/nodes/models", "concepts/nodes/parameters"]
+              },
+              {
                 "group": "Integrations",
                 "pages": ["concepts/integrations/credentials"]
               },
@@ -48,7 +52,8 @@
                 "group": "Automations",
                 "pages": [
                   "concepts/automations/jobs",
-                  "concepts/automations/webhooks"
+                  "concepts/automations/webhooks",
+                  "concepts/automations/scraping"
                 ]
               }
             ]
@@ -72,7 +77,8 @@
                   },
                   "node-reference/nodes/prompt",
                   "node-reference/nodes/code",
-                  "node-reference/nodes/API"
+                  "node-reference/nodes/API",
+                  "node-reference/nodes/image"
                 ]
               },
               {
@@ -88,19 +94,13 @@
                     ]
                   },
                   {
-                    "group": "Generate",
-                    "pages": [
-                      "node-reference/tools/generate/audio",
-                      "node-reference/tools/generate/image",
-                      "node-reference/tools/generate/video",
-                      "node-reference/tools/generate/edit-image"
-                    ]
-                  },
-                  {
                     "group": "Sheets",
                     "pages": [
                       "node-reference/tools/sheets/read",
-                      "node-reference/tools/sheets/write"
+                      "node-reference/tools/sheets/write",
+                      "node-reference/tools/sheets/check-data-exists",
+                      "node-reference/tools/sheets/sort-headers",
+                      "node-reference/tools/sheets/write-new-rows"
                     ]
                   }
                 ]
@@ -113,10 +113,7 @@
                     "group": "Components",
                     "pages": [
                       "node-reference/plugins/grasshopper/runchat",
-                      "node-reference/plugins/grasshopper/loadglb",
-                      "node-reference/plugins/grasshopper/loadimage",
-                      "node-reference/plugins/grasshopper/screengrab",
-                      "node-reference/plugins/grasshopper/project"
+                      "node-reference/plugins/grasshopper/utilities"
                     ]
                   }
                 ]

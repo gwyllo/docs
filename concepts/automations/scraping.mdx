@@ -1,0 +1,28 @@
+---
+title: 'Scraping'
+description: 'Parse raw HTML for more efficient processing'
+---
+
+Processing raw HTML strings using language models can take a lot of tokens and time. If you know the elements you want to process ahead of time, consider extracting this data from the HTML first. You can perform basic HTML parsing from the code node using the `scrape` function.
+
+# Calling the scrape() function
+
+The `scrape` function is a reserved function name within the Runchat code editor. It uses the node-html-parser library under the hood to extract content from html strings. You can call the `scrape` function like any other function in javascript and pass in four arguments:
+
+`const scrapeResult = scrape(html, selector, textOnly, attribute);`
+
+**html**
+
+The raw HTML string to process. You can easily fetch html content using the `API` node. 
+
+**selector**
+
+A CSS selector. To select classes you can use dot syntax e.g. `div.className`. To select IDs you can use the hash e.g.  `#id`. To select elements, you specify only the element tag e.g. `a`. To copy a selector for any element on a page, open the page in Chrome, right click the element you want to copy and choose `Inspect`, then right click on the HTML element in Dev Tools and choose Copy Selector.
+
+**textOnly**
+
+A “true” or “false” value. When false the parser returns an HTML string containing all child elements. When true, the parser returns the text of all child elements. 
+
+**attribute**
+
+If provided, returns the value of a specified attribute e.g. `href` instead of the element text content.

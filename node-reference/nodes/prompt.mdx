@@ -1,0 +1,76 @@
+---
+title: "Prompt"
+description: "Send requests to language models"
+---
+
+You can send multiple prompts in parallel, constrain responses to specific formats, and allow language models to use any Runchats as tools. 
+
+## Prompt
+The prompt input is where you describe what you want the language model to do. This is exactly the same as the text input to chatGPT, Claude or any other language model chatbot on the internet. In Runchat, the prompt is typically used to describe some kind of `task` or `action` you want the language model to take. This includes things like: 
+
+- Does this meet criteria **X**? (output true / false)
+- Format this as **Y** (output an object)
+- Generate a list of options for **Z** (output an array)
+- Save this to a Google Sheet for me (use `Google Sheet` tool)
+
+## Context
+
+The context input is where you provide any additional information to help the language model with understanding the context of your prompt. This is exactly the same as the conversation history in most chatbots. In Runchat, the context is typically used for: 
+
+- Conversation history from previous prompts
+- Images / Documents for the prompt to act on
+- Input from a user running the Runchat as an App
+
+## Format
+
+The Format input is where you can specify an exact format for the language model to respond in. The default is text. In Runchat, the format is typically used for: 
+
+- Generating lists of content to be run in parallel by other nodes
+- Creating structured data from unstructured inputs (e.g. parsing a blog to `header` and `content` fields)
+- Formatting data for external APIs
+- Flow control (outputting true / false values)
+
+### Format Types
+
+You can generate responses in several different formats: 
+
+- Text: default markdown responses
+- Number: constrain output to numerical responses only
+- Boolean: constrain output to true / false values only. This is useful for [using prompts for flow control.](/concepts/data/routing)
+- Object: constrain output to objects that match a specified schema
+- Array: output a list with a specified type
+- Enum: constrain output to one of a list of options
+- Request: constrain output to an object in API request format (url, method, header, body)
+
+## System Prompt
+
+[System prompts](https://platform.openai.com/docs/guides/prompt-engineering/strategy-write-clear-instructions) are an instruction that is used to guide model responses. To simplify the UX for end users this parameter is hidden and defaults to `Return succinct markdown` . For more advanced prompting it can be necessary to describe specific instructions for how you want responses formatted, and the system prompt is often used as a sort of “program” that operates on the user prompt input. 
+
+To enable the System Prompt parameter, check the box in the prompt settings. The default instruction is `Return succinct Markdown`.
+
+### Writing custom instructions
+
+You can specify anything you like in the instruction parameter. The language model will attempt to follow these instructions when responding to prompts. Unlike formatted outputs, instructions are not hard constraints on responses but are instead more like rough guides - especially when providing complex instructions you should expect some deviation in responses. Custom instructions can be used to: 
+
+1. Specify formatting. For instance, `Respond in all caps only` will return responses in capital letters (most of the time).  `You are an evaluating bot and only ever return a single word response of true or false in response to any user query`  will (most of the time) return only true of false responses no matter what you input in your prompt. 
+2. Specify brevity. For instance, `Return short answers up to 100 words only`
+3. Specify logic and rules. For instance `You are a dungeon master in DND and apply the rules of DND as precisely as possible`. Or, `When asked to evaluate options, assign probabilities to each option that reflect their likelihood then return the most likely option` etc.
+4. Specify specific functionality. For instance `You are an expert programmer in javascript and write simple functions in response to user prompts. You never use external libraries. When a user requests a function that is complex, suggest ways to break it into simpler parts` etc. 
+
+<Info>
+Why aren’t my instructions being followed?
+
+When you provide a conversation history in the `context` parameter that includes assistant responses that don’t follow your instructions, this can provide an example to the model that the instructions don’t necessarily need to be followed exactly. Take care when using the message input from previous prompt nodes in combination with instructions. 
+
+Another reason might be that your instructions are too complex or too vague. Be as clear and direct as possible when specifying instructions. If you couldn’t follow them, don’t expect the language model to!
+
+</Info>
+
+## Grounding with Search
+
+You can enable search from the Tools settings in the `Prompt`  node. Search is supported for any model on Openrouter, and for Gemini models on Runchat Pro. When you enable search, the model provider will perform a web search and pass the first result to the language model along with your prompt. This allows you to ground results with real factual data and is especially useful for prompts that require up to date information. 
+Search with Openrouter models costs $4 / 1000 requests and is charged to your Openrouter account. Search requests with Runchat Pro are free for 100 requests per month. If you need more requests, get in touch.
+
+<Info>
+For more control over search parameters and results, use the tools in the `Search` library.
+</Info>
