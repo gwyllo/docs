@@ -1,0 +1,33 @@
+---
+title: 'Routing'
+description: 'Control data flow within a runchat with conditional routing'
+---
+
+You can use the nodes in the `Flow` default library to parametrically enable or disable parts of your Runchat and prevent them from updating. This is useful if you want your runchat to perform different actions under different conditions.
+
+<img src="/images/routers.png" style={{ borderRadius: '0.5rem' }} />
+
+# Switch
+
+The `Switch` node enables or disables outputs based on the `switchVal`. When the switch is `On`, then the `trueVal` output is enabled and all connected downstream nodes will update. When the switch is `Off`, then the `falseVal` output is enabled and all connected downstream nodes will update. Nodes downstream from the disabled output will not update. 
+
+### Controlling the Switch with the Prompt Node
+
+Generally speaking, some other node in your runchat will control whether the `switch` should be on or off. There are several common approaches to this. One flexible approach is to use a `Prompt`.  The advantage of using prompts to control the switch is you can reason about subjective circumstances and still control your application flow. In your `Prompt` node, set the `Output Format` to `boolean` to ensure that the model only outputs `True` or `False`.  Then frame your prompt as a question: “is this x?”. 
+
+<img src="/images/llm-switch.png" style={{ borderRadius: '0.5rem' }} />
+
+### Controlling the Switch with the Code Node
+
+If the switch condition can be measured empirically then you can also use a `Code` node to write a script to output a boolean value. This is typically the case for checking things like: 
+
+- Is a string of text exactly what we expect it to be
+- Do we or don’t we have data
+- Is a key present in an object
+- Is a value larger or smaller than some threshold etc.
+
+This allows us to gracefully handle when things go off the rails in our Runchat. We could for instance display an error message, or send an email, or create the key etc. 
+
+# Router
+
+The `Router` node allows you to “route” a list of data to a list of output parameter names. You can think of this like a `Switch` for lists. Use the prompt or code node to generate a list of parameter names, one for each item in your data list. For instance you might call these “trueVal” and “falseVal” and then you would have very similar functionality to the switch. If you want to disable an output parameter entirely (like the switch node), pass it a `null` value. 

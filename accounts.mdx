@@ -1,0 +1,61 @@
+---
+title: 'Link Accounts'
+description: 'Learn how to sign up for Runchat and link your other accounts'
+---
+
+## Creating a free Runchat account
+
+Head to https://runchat.app/signup to create a new Runchat account or sign in.
+You can sign in using your Google account, or by entering an email and password and clicking Create Account. Check your email for a confirmation link and use that to sign in. If this is a new account, your free 14 day trial of Runchat Pro will start straight away.
+
+<Info>
+
+Runchat Pro includes some Gemini credits so you can start using Runchat without linking any third party services, 7 day save history and support for scheduled and private runchats.
+
+</Info>
+
+## Connecting Accounts
+
+You can connect Runchat to any other restful API on the internet by [securely linking your API key on the dashboard](/concepts/integrations/credentials).
+Runchat will automatically extend the functionality of some nodes when you add supported services. 
+These include using Fal to add models to the `Image`  node, and OpenRouter, Groq and Cerebras to add models to the `Prompt` node. 
+
+### Connecting OpenRouter for OpenAI, Anthropic and free models
+
+You can use Runchat entirely for free by linking an OpenRouter account. OpenRouter serves models from most of the major research labs, including experimental and free models with rate limits. To connect OpenRouter, visit https://openrouter.ai and create an account. Then from the keys dashboard at  https://runchat.app/dashboard/keys click `Authorize OpenRouter`. This will open a popup where you will be prompted to sign in to your OpenRouter account and then Authorize Runchat. Enter a max spend cap if you want (if you don’t have any open router credits you don’t need to) then click Authorize the return to the Runchat Dashboard. You can now install models from OpenRouter on the [models page](https://www.notion.so/Adding-comparing-and-defaulting-language-Models-1832742769ce80928b03ddfb5091b42e?pvs=21) and these will appear as options in the `Prompt` node settings.
+
+### Connecting Fal for images
+
+<iframe
+  width="560"
+  height="315"
+  src="https://www.youtube.com/embed/wj4l8CwuIik"
+  title="YouTube video player"
+  frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+  allowfullscreen
+></iframe>
+
+Fal is a fast inference provider for generative AI models. They host models to generate and edit images, video, audio and text. Runchat uses Fal as the default provider for image generation in the `Image Node`. When you connect Fal, Runchat will automatically add options to the `Image Node` settings that will allow you to choose from fast and low-cost models (Stable Diffusion Turbo), models with a good tradeoff of price and quality (Flux schnell and Flux Dev) and high quality models (Flux Pro and Recraft). Recraft can be used to generate vector graphics as well as raster images. 
+
+<aside>
+💡
+
+For more information on the `Image Node` check the [Guide](https://www.notion.so/Image-Node-Overview-1862742769ce80e1bde6f46648e07552?pvs=21). 
+
+</aside>
+
+To connect Fal, head to [fal.ai](http://fal.ai) and create an account. Then visit https://fal.ai/dashboard/keys and click Add Key. Leave the scope as “API”, enter a name to remember the key by (e.g. runchat) and click Create Key. Then copy the generated key, paste it into the Fal section on https://runchat.app/dashboard/keys and click `Add Fal Key` to encrypt it and add it to your Runchat account. Runchat will automatically detect this key and enable options to use high quality models in the `Image` node in the editor. 
+
+### Connecting Gemini
+
+Linking a Gemini account gives you access to all features supported by Google's gemini models including support for reading pdfs and images, structured outputs, tool use and image generation with experimental models. 
+You can get a free API key from https://aistudio.google.com/app/apikey and enter this in the Runchat Dashboard to link your account. 
+
+### Connecting Google Sheets
+
+Working with Google Sheets requires authorizing Runchat to access to your Google Sheets account via OAuth. Click `Authorize Google Sheets` from the https://runchat.app/dashboard/keys page to display the OAuth consent screen. Sign into your Google account and then follow the prompts to Authorize Runchat and return to the dashboard. You can now work with the Google Sheets api in the `API` node using the `google_sheets` variable [to reference your encrypted access token](https://www.notion.so/Credentials-and-Encrypted-Keys-in-Inputs-1832742769ce8075bb33f1a6b9e7b3ed?pvs=21). 
+
+<Tip>
+For more information on `Google Sheets` nodes, check the [Guide](/tools/tool-reference/sheets/read). 
+</Tip>

@@ -1,0 +1,45 @@
+---
+title: 'Tools'
+description: 'How to use Runchat workflows as tools'
+---
+
+Runchat is a tool building platform. Anything you publish to a library in Runchat can be used automatically as a tool by language models in the `Prompt` node.
+
+Many language models are capable of structuring responses to match those required by external APIs or functions. 
+This is called Function Calling. To use Function Calling, developers need to provide descriptions of each of the input parameters to a function in order for the language model to determine how to call the function and get the expected result. 
+In Runchat, people create tools using Prompt, Code and API nodes (or other Runchat nodes), and provide labels and descriptions to input parameters so that users can understand how these parameters work in published apps. 
+These same descriptions also help language models understand how to use Runchats as tools autonomously. This process works as follows:
+
+- User publishes input parameters on a Runchat and adds labels and descriptions.
+- User installs this Runchat as a library. This could be the author, or anyone else.
+- The user specifies any tools they want to make available to the language model during a request
+- The language model automatically determines if one or more tools should be used to respond to the request
+- If a tool is required, the language model returns a response that provides values for all input parameters
+- Runchat takes these inputs, runs the node required, and returns the response to the language model
+- The language model then responds to the user’s request
+
+# An example: Should I go for a surf today?
+
+This is an example of where calling multiple tools would be useful to respond to the users request. The language model doesn’t have any intrinsic knowledge of: 
+
+- what the date is
+- what the weather is
+- what the nearest surf breaks are
+
+To respond to this request, we could create several runchats for the prompt node to use as tools: 
+
+- We could create a Runchat called `Get Date` that uses the `Code Node` and just runs  `return Date();` - we could publish the inputs and outputs, add descriptions, and add the node to a library.
+- We could create another Runchat called `Get Weather` that uses the `API Node` to make a request to a weather api to get the current weather forecast at the user’s location. Again, we publish all the inputs, add descriptions and add the node to a library.
+- Finally, we could create a Runchat called `Google Maps Search` that uses the `Google Maps` API to search for beaches nearby.
+
+<Info>
+Or, in this particular case, there are APIs around specifically for getting surf data. Some surf forecast websites even have publicly accessible APIs. 
+</Info>
+
+Then we create a `Prompt` node and add `Get Date`, `Get Weather` and `Google Maps Search` to the tools. We ask for “Should I go for a surf today? I live in x” and, with a bit of luck, the language model figures out what it can use these three tools to get the information it needs to respond yes or no. The advantage of building these three particular tools is that they can be used for plenty of other things besides basic surfing encouragement. Our language model could now suggest: 
+
+- Where to go for a walk today
+- What to wear today
+- How to get to x given the weather today
+
+And so on. This is the power of function calling.

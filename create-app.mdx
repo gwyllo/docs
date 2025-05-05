@@ -1,0 +1,163 @@
+---
+title: 'Create an App'
+description: 'Create your first app with Runchat'
+---
+
+<Info>
+  **Prerequisite**: Sign up for a free Runchat account so you can save your work.
+</Info>
+
+### Creating a new Runchat
+
+<img src="/images/new-runchat.png" style={{ borderRadius: '0.5rem' }} />
+
+Open [the Runchat editor](https://runchat.app/editor?new=true) and click Start from Scratch to create a new runchat with a single Prompt node.
+Runchat will save your work whenever you add a node or re-run your workflow. 
+You can enter a new file name and manually save your work using the toolbar at the top of the editor.
+
+### Write your first Prompt
+
+<img src="/images/prompt.png" style={{ borderRadius: '0.5rem' }} />
+
+The prompt node is used to automate tasks in Runchat. 
+It can be used to process documents, summarize text, format data, generate images and use other Runchats as tools. 
+You can specify what you want the prompt node to do by entering text into the input form on the node, or by connecting data from some other node in your workflow. 
+For now, enter "Tell me a story" into the prompt input. 
+
+### Running nodes
+
+Nodes won't do anything until you run them. 
+Now that we've set an input to our prompt, press the blue play button in the node toolbar to run the node and generate an output. 
+You can run *all* nodes in your workflow by pressing the blue play button in the toolbar at the top of the editor.
+
+### Inputs and outputs
+
+<img src="/images/story.png" style={{ borderRadius: '0.5rem' }} />
+
+After the node finishes running, it will display the output. 
+If you're using Gemini 2.0 Flash, this is probably a story about Silas the lighthouse keeper.
+You can flick back to the input form by clicking the OUTPUT toggle in the top corner of the node.
+Let's flick back and change our prompt to "Tell me a story about this topic".
+
+### Creating nodes and inputs
+
+Everything in Runchat is built from four basic nodes: Inputs for entering data, Prompts for working with AI, APIs for connecting to external services and Code for writing javascript. 
+Double click on a blank space on the canvas, click the + button in the bottom toolbar or press the space bar to show the Node menu.
+Create a Text node from the Input submenu and enter "Shellfish" into the text area. 
+You can move the node around on the canvas by dragging the grey area of the node.
+If you need to, you can delete a node or an edge by clicking on it then pressing `Delete` or `Backspace`.
+Move the node to the left of our prompt. 
+
+<Info>
+You can also create nodes by dragging from an input or output parameter and dropping onto an empty spot on the canvas.
+</Info>
+
+### Connecting nodes
+
+<img src="/images/inputs.png" style={{ borderRadius: '0.5rem' }} />
+
+Runchat is useful for defining parametric relationships between prompts. 
+We can control how data is passed from one node to another by creating edges. 
+Click and drag from the green output handle on our Input node to the blue input handle on our Prompt node.
+You should see our "Shellfish" input show up as context for our prompt. 
+
+<Info>
+Edge colours indicate what type of data is moving between nodes.
+For more information in this check the Core Concepts article on [Data Types](/concepts/data).
+</Info>
+
+### Scheduling updates
+
+Now that we've changed the input to our prompt node, it will be scheduled for an update on next run. 
+Nodes scheduled for an update are indicated with a Clock icon next to their name.
+When we press the editor Play button in the top menu bar, all scheduled nodes will be run first. 
+If there are no nodes scheduled for update then the entire workflow will be re-run. 
+Press the editor Play button in the top menu bar to update both of the nodes in our workflow. 
+
+### Working with lists
+
+<img src="/images/pages.png" style={{ borderRadius: '0.5rem' }} />
+
+Nodes in Runchat can work with individual values or on lists in parallel.
+The input node allows you to create lists of inputs by first zooming in on the node then clicking the plus button to add an input.
+Zoom in our our input node and click the + button to add another input. Enter "Sharks". 
+Press the editor Play button to re-run our nodes and generate two stories.
+
+<Info>
+List outputs are displayed in a table view by default. 
+You can toggle between table and page view by hovering over the output page on a node and clicking on the icons in the bottom right corner.
+This is also where you can download the output data as a csv file. 
+</Info>
+
+### Working with images and pdfs
+
+<img src="/images/crab.jpg" style={{ borderRadius: '0.5rem' }} />
+
+Runchat is multimodal and supports prompting with images and files as well as text.
+You can upload supported files (images, text and PDF) by referencing urls, dragging and dropping them into the editor or using the `File` input node. 
+Delete your text input field and drag and drop the image above into the Runchat editor.
+Connect the output of the File node to the blue context input of our prompt.
+Change your prompt to "Describe this image" and press play to see the result. 
+
+### Formatting data
+
+<img src="/images/format.png" style={{ borderRadius: '0.5rem' }} />
+
+We can force our language model to return data in a specific format to make it easier to integrate with other apps, services or workflows.
+You can configure the language model we use for our prompt, which tools the model has access to and whether to enable system instructions and output formats from the node settings bar.
+Enable Output Format from the settings. Then in the node input form, change the format type from text to object.
+Here we can define a set of key-value pairs we require our language model to use when formatting a response. 
+Define the keys as in the image above and press play to see the result. 
+
+### Publishing parameters
+
+<img src="/images/paramLabel.png" style={{ borderRadius: '0.5rem' }} />
+
+Every workflow in Runchat can be published as a tool to be re-used in other workflows or called automatically in the Prompt node.
+To publish a tool, we need to specify which inputs we want to receive data, and which outputs we want to return data.
+Hover over the left-side parameter on our file node and click the Lighting Bolt icon to publish this input. 
+For language models (and people) to know what our tool does, we need to give this input a name and a description.
+Hover over the input parameter and double-click the `input` parameter name. Enter `image`. 
+Then click the edit button on the form input on the node and enter "A base64 string or url to an image". 
+Hover over the right-side parameter on our prompt node and click the Lightning Bolt icon to publish the output of our tool. 
+
+### Sharing apps
+<img src="/images/appView.png" style={{ borderRadius: '0.5rem', maxWidth:"300px"}} />
+
+Published tools can be shared as public web apps. This allows anyone to use your Runchat without needing to open the editor. 
+To show a preview of your app in the sidebar, click Preview App at the bottom of the Runchat editor menu. 
+You can then copy a link to app view using the Share button next to the App header. 
+
+<Tip>
+To learn more check out the [Apps page](/concepts/publishing/apps)
+</Tip>
+
+### Creating tool libraries
+
+To use our Runchat as a node or tool we need to describe what it does and add it to a Library. 
+Double click anywhere on the canvas and create a Note node. Click the note to edit it, and enter "Describes the subject, colour, media and contents of an image".
+Click on the Runchat name in the editor toolbar and rename it to "Descibe Image". 
+Click on `Add To Library` from the editor toolbar. Enter "My Tools" as the new library name and click + to create the library and publish our tool.
+Finally, refresh your browser window to reload your user profile with your new tool. 
+
+<Info>
+You can add multiple tools to a library, and can save a new version of your tool without impacting other Runchats that use it. 
+</Info>
+
+### Using tools
+
+Runchat can be used to automate complex process-specific workflows by providing language models with access to custom tools you have created.
+Create a new Runchat by clicking the Runchat icon in the editor menu, then clicking New Runchat.
+Double-click and create an Image node. Enter "a humback whale" as the prompt and press play. 
+Now double-click and create a Describe Image node from your My Tools library. 
+Connect your image output to the image input of the tool and press play to describe it.
+
+<img src="/images/toolNode.png" style={{ borderRadius: '0.5rem' }} />
+
+We can also give our tool to a language model to describe images with our four specific properties of subject, content, media and colour.
+For instance, we can use this tool to process images with faster or cheaper language models that may not be multimodal. 
+Create a new Prompt node and connect the output of your image node to the blue Context input. Enter "describe this image in detail" as the prompt. 
+From the tools menu in the settings bar, search for "Describe Image" and click the result. 
+Press play to run the node and use our new tool. 
+
+<img src="/images/toolUse2.png" style={{ borderRadius: '0.5rem' }} />

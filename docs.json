@@ -11,32 +11,116 @@
   "navigation": {
     "tabs": [
       {
-        "tab": "Guides",
+        "tab": "Docs",
         "groups": [
           {
             "group": "Get Started",
-            "pages": ["index", "quickstart", "development"]
+            "pages": ["index", "accounts", "create-app"]
           },
           {
-            "group": "Essentials",
+            "group": "Core Concepts",
             "pages": [
-              "essentials/markdown",
-              "essentials/code",
-              "essentials/images",
-              "essentials/settings",
-              "essentials/navigation",
-              "essentials/reusable-snippets"
+              {
+                "group": "Data",
+                "pages": [
+                  "concepts/data/data-types",
+                  "concepts/data/data-structure",
+                  "concepts/data/data-matching",
+                  "concepts/data/data-referencing",
+                  "concepts/data/routing",
+                  "concepts/data/loops"
+                ]
+              },
+              {
+                "group": "Integrations",
+                "pages": ["concepts/integrations/credentials"]
+              },
+              {
+                "group": "Publishing",
+                "pages": [
+                  "concepts/publishing/save-load",
+                  "concepts/publishing/app-view",
+                  "concepts/publishing/libraries",
+                  "concepts/publishing/tools"
+                ]
+              },
+              {
+                "group": "Automations",
+                "pages": [
+                  "concepts/automations/jobs",
+                  "concepts/automations/webhooks"
+                ]
+              }
             ]
           },
           {
-            "group": "Nodes",
+            "group": "Node Reference",
             "pages": [
-              "nodes/node-reference/input",
-              "nodes/node-reference/prompt",
-              "nodes/node-reference/code",
-              "nodes/node-reference/API",
-              "nodes/node-reference/image",
-              "nodes/node-reference/runchat"
+              {
+                "group": "Nodes",
+                "pages": [
+                  {
+                    "group": "Inputs",
+                    "pages": [
+                      "node-reference/nodes/inputs/text",
+                      "node-reference/nodes/inputs/file",
+                      "node-reference/nodes/inputs/object",
+                      "node-reference/nodes/inputs/property",
+                      "node-reference/nodes/inputs/button",
+                      "node-reference/nodes/inputs/select"
+                    ]
+                  },
+                  "node-reference/nodes/prompt",
+                  "node-reference/nodes/code",
+                  "node-reference/nodes/API"
+                ]
+              },
+              {
+                "group": "Tools",
+                "pages": [
+                  {
+                    "group": "Search",
+                    "pages": [
+                      "node-reference/tools/search/tavily-crawl",
+                      "node-reference/tools/search/tavily-search",
+                      "node-reference/tools/search/google",
+                      "node-reference/tools/search/brave"
+                    ]
+                  },
+                  {
+                    "group": "Generate",
+                    "pages": [
+                      "node-reference/tools/generate/audio",
+                      "node-reference/tools/generate/image",
+                      "node-reference/tools/generate/video",
+                      "node-reference/tools/generate/edit-image"
+                    ]
+                  },
+                  {
+                    "group": "Sheets",
+                    "pages": [
+                      "node-reference/tools/sheets/read",
+                      "node-reference/tools/sheets/write"
+                    ]
+                  }
+                ]
+              },
+              {
+                "group": "Plugins",
+                "pages": [
+                  "node-reference/plugins/grasshopper",
+                  {
+                    "group": "Components",
+                    "pages": [
+                      "node-reference/plugins/grasshopper/runchat",
+                      "node-reference/plugins/grasshopper/loadglb",
+                      "node-reference/plugins/grasshopper/loadimage",
+                      "node-reference/plugins/grasshopper/screengrab",
+                      "node-reference/plugins/grasshopper/project"
+                    ]
+                  }
+                ]
+              }
             ]
           }
         ]
@@ -46,7 +130,7 @@
         "groups": [
           {
             "group": "API Documentation",
-            "pages": ["api-reference/introduction", "api-reference/webhooks"]
+            "pages": ["api-reference/introduction"]
           },
           {
             "group": "Endpoints",
@@ -69,6 +153,11 @@
           "anchor": "Blog",
           "href": "https://gwyllim.substack.com",
           "icon": "newspaper"
+        },
+        {
+          "anchor": "Tutorials",
+          "href": "https://www.youtube.com/@runchat.tutorials",
+          "icon": "youtube"
         }
       ]
     }

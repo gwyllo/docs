@@ -1,0 +1,35 @@
+---
+title: 'Scheduling Jobs'
+description: 'Runchats can be set to automatically re-run on a fixed schedule, allowing you to poll for changes to data, automatically generate daily content, create weekly summaries and more.'
+---
+
+<Info>
+Scheduling Jobs requires a subscription to [Runchat Pro](http://Runchat.app/pricing).
+</Info>
+
+By default, Runchats will only run when you trigger them within the Editor or App views. To schedule a new Job, click on the 🕒 icon in the top menu bar in the editor, or next to the runchat you want to schedule in the Runchat dashboard. Then click the dropdown to choose a run frequency. You can run jobs on an hourly, daily, weekly or monthly basis. 
+
+<img src="/images/job.png" style={{ borderRadius: '0.5rem' }} />
+
+### Cancelling a job
+
+To stop a job from running, click the 🕒 icon in the Editor toolbar and then set the schedule back to `Never`. 
+
+# Job Inputs
+
+Scheduled jobs will run with the same set of input parameters set out in your Runchat. You cannot pass different inputs to different jobs. If you need to run a Runchat on a schedule with different input data, you can use the [Runchat API](https://www.notion.so/ba1cdc87bb204ee19263899a8a839ae5?pvs=21) instead.  Because of this constraint, Scheduled jobs are most useful when the retrieve data from elsewhere on the internet when they run. For instance, scheduled jobs might: 
+
+- Check a spreadsheet or database for new content
+- Check social media posts
+- Check forums, messageboards or marketplaces
+- Call external APIs (e.g. stock market indexes etc)
+
+# Job Outputs
+
+Any runchat can be run on a schedule. However, because you will not be able to inspect the runchat after it has run (as you would in the editor view) or see the result (as you would in the app view), you should only schedule Runchats that interact with some service **outside** of runchat. For instance, you might schedule a Runchat that: 
+
+- Writes to a spreadsheet each week
+- Sends an email or newsletter each month
+- Checks an API endpoint every hour and then sends an alert email if a condition is met
+
+Unnecessarily automating runchats that run large prompts can quickly consume API credits!

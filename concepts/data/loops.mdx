@@ -1,0 +1,30 @@
+---
+title: 'Loops'
+description: 'Learn how to pass data upstream with loops'
+---
+
+<img src="/images/loop.png" style={{ borderRadius: '0.5rem' }} />
+
+Runchat supports passing data upstream to define recursive tools and processes. 
+This enables applications like generate-critique workflows, website crawling and task orchestration. 
+You can create a loop by connecting an output parameter of a node to an input parameter of an upstream node.
+
+<Info>
+Note that Runchat loops over each input to a parameter and runs calculations in parallel. 
+Using loop edges is usually only necessary when you require a recursive data flow. 
+</Info>
+
+## For Loops
+
+A for-loop is a loop that runs for a specific number of times. 
+You can modify the number of times the loop runs for by creating a loop then clicking the blue loop tag in the center of the loop edge.
+The maximum times a loop can run is 100. 
+
+## While Loops
+
+<img src="/images/while.png" style={{ borderRadius: '0.5rem' }} />
+
+A while-loop runs until a condition is met.
+You can create while loops in Runchat by referencing an output parameter in your workflow. 
+While this parameter evaluates to `true` the loop will run. When the parameter evaluates to `false` the loop will stop.
+The maximum runs for a while-loop is still 100. 

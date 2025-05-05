@@ -1,0 +1,50 @@
+---
+title: 'Data Matching'
+description: 'Learn how Runchat approaches matching data from multiple parameters'
+---
+
+When a node has multiple input parameters, runchat will attempt to match input data following common sense heuristics.
+
+# Single Input / Single Item
+
+When a node only has a single parameter with a single item, then no data matching is required. The node will process this single input and (unless you are writing custom code or making an api call that returns multiple things) return a single output. 
+
+<Card>
+For example: When you plug a text input into the prompt of an Image node, you generate one image
+</Card>
+
+# Single Input / Multiple Items
+
+When a node has a single parameter but you connect multiple input items, then the node will attempt to process each item and output the same data structure. E.g. If you connect a list of items then you will get a list out. If you connect a datatree of items, you will get a datatree out. 
+
+<Card>
+For example: When you plug two text inputs into the prompt of an Image node, you generate *two* images.
+</Card>
+
+This seems simple but already we are needing to apply heuristics. In some cases you might want those multiple text inputs to be joined together into a single text input: 
+
+<Card>
+For example: When you write some text that defines a style and some text that defines some content for an image, and connect them to the prompt of an Image node. Perhaps you want to make a single image from the combined text? (If this is the case, concatenate the text first)
+</Card>
+
+# Multiple Inputs / Same number of items
+
+When a node has multiple input parameters and you provide the same number of items to each, then the node will attempt to ‘zip’ these inputs together for processing. This means processing the first item for each parameter, then the second item, then the third and so on. 
+
+<Card>
+For example: When you plug in some text for a prompt and some text for a context to the Prompt node, you get one response for each prompt-context pair.
+</Card>
+
+<Warning>
+
+**A note on “items” - some data types are themselves made up of multiple items (e.g. the “Context” data type contains multiple messages, and a message can contain multiple parts as well).** 
+
+</Warning>
+
+# Multiple Inputs / Different number of items
+
+When a node has multiple input parameters and you provide a different number of items for each, then the node will zip inputs when matching items are found, and then use the last available item for a parameter if no matching items are found.
+
+<Card>
+For Example: You write a single set of instructions for a Prompt node, and then connect 10 different items to the prompt parameter to process each with these instructions. 
+</Card>

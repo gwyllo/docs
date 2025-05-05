@@ -1,0 +1,36 @@
+---
+title: 'App View'
+description: 'Learn more about how published apps work in Runchat'
+---
+Publishing a runchat allows you to expose only selected inputs and outputs to the end user, and keep the complexity of how your app works hidden away. Published apps can be used as productivity tools, games, tutors, recommendation engines, widgets - anything you can think of.
+
+# Creating your app UI
+
+Before you publish your runchat you will need to specify which parameters should be visible to your apps users. You can toggle whether a parameter is published by clicking on the lightning bolt icon when you hover over a parameter. Published input parameters will be **editable** by end users in your app. For instance, if you publish a text input parameter, your app will also have a text input that users will be able to modify. Published output parameters are not editable and are formatted exactly as you see them in the runchat editor.  
+
+# Viewing and Sharing your published app
+
+After you have saved your runchat to the cloud, you can click on the Rocket button from the bottom left corner of the editor to launch the app preview. To share a link to your app, click the share button next to the app name in the App preview. By default, every time you open your app page you will create a **copy** of the app that is unique to this visitor. This allows you to build apps that remember what a visitor has done - for instance their chat history or their score in a game. The id of this copy or “instance” of the app is visible in the url. 
+
+<Info>
+😮
+
+If you want to make a multiplayer app where multiple visitors can all edit the same app state, just share the same url! 
+
+</Info>
+
+# Running the app
+
+To run the published app, make any changes to inputs as desired then click the white run button. This loads the runchat on the server, sends your input data, calculates the result and sends it back to the viewer. If you’re designing an app with a lot of long, slow prompts or libraries be sure to check if the run time is within the patience of your intended audience!
+
+# State
+
+Published apps will keep track of the state of all nodes in your current Runchat. This allows you to create applications that change over time e.g. to create a task and then check on the state of the task, or to create a game with scores that change etc etc. However, any nested runchats will *not* track state. Every time you press `Run` on a published app, it will download and run the chat with the current input parameters
+
+# Embedding apps
+
+Runchats are designed to be embedded in other third party sites like [notion.so](http://notion.so). This is usually as simple as pasting in the url link to your app and choosing to embed it in a page. You can see several examples of this on our docs pages.
+
+# Tokens and Accounts
+
+When you publish an app and share it on the web, it is usable to anyone even if they don’t have a Runchat account. Any use of your app by visitors who are not signed in will be charged to your api keys (e.g. OpenRouter or Fal) - so take care if using large expensive models and sharing with a lot of anonymous people. If someone uses your app while signed in to Runchat then the app will use their keys instead.

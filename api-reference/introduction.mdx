@@ -1,16 +1,19 @@
 ---
 title: 'Introduction'
-description: 'Specifications for the Runchat API'
+description: 'The Runchat API allows you to run Runchats on arbitrary schedules, post data to Webhook nodes or trigger a workflow by providing inputs to specific parameters.'
 ---
 
 <Note>
-  The Runchat API allows you to use Runchat as a backend for other third party applications. The API is used by integrations like our Rhino and Grasshopper plugin.
+  The API is used by integrations like our [Rhino and Grasshopper plugin](/test).
 </Note>
 
-## Welcome
+## Quickstart
 
-The Runchat API allows you to run Runchats on arbitrary schedules, post data to Webhook nodes or trigger a workflow by providing inputs to specific parameters. 
-The `Schema` endpoint allows you to retrieve an array of published parameter IDs for a given Runchat. You can then map over input parameter IDs to create the required inputs array for the `Run` endpoint.
+To schedule a run without providing input data you can use the `GET` method on the `Run` endpoint. 
+If the Runchat contains a `webhook` node, the entire JSON body of a `POST` request to the `Run` endpoint will be set as the input to that node. 
+This allows you to trigger runchats without first defining a specific input schema.
+To assign data to specific input parameters, first use the `Schema` endpoint to retrieve an array of published parameter IDs.
+You can then map over input parameter IDs to create the required inputs array for the `Run` endpoint.
 
 ## Authentication
 

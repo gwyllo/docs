@@ -1,0 +1,122 @@
+---
+title: "Runchat for Grasshopper"
+description: "Generate code and 3D models within Grasshopper"
+---
+
+<iframe
+  width="560"
+  height="315"
+  src="https://www.youtube.com/embed/4_erw_cKbGg"
+  title="YouTube video player"
+  frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+  allowfullscreen
+></iframe>
+
+# Getting Started:
+
+### 1. Install Runchat for Rhino
+
+- In rhino, run `PackageManager`
+- Search for Runchat and Install it
+- Restart rhino before continuing
+
+### 2. Add a Runchat Node in Grasshopper
+
+- Runchat will appear in the top toolbar
+- You can find the Runchat node in the toolbar, or by searching for Runchat
+
+### 3. Provide an API key
+
+- Head to [`runchat.app`](http://runchat.app) and create an account
+- Verify your account by following the link sent to your email address
+
+**Generate an API key**
+
+- Whilst logged into your account:
+  - Proceed to [runchat.app/dashboard/keys](http://runchat.app/dashboard/keys)
+  - Scroll to the bottom and under the heading `Runchat API Keys (Early Access)` press "Create New Key"
+  - Copy your key to your clipboard
+
+**Add the API key to the Runchat Node**
+
+<Check>
+  The API key is stored as a local environment variable and is not saved with
+  your Grasshopper definition.
+</Check>
+
+Enter your API key in the text field that says "Set API Key"
+
+- Right click on the Runchat Node
+- In the text field that says "Set API Key" paste your key and press enter
+
+### 4. Get the ID of your Runchat
+
+Runchat is a node-based editor that runs in your browser. You will need to tell the Runchat grasshopper node which Runchat workflow you want to run.
+
+To do this you'll need to provide an `id` for the Runchat.
+
+The `id` can be extracted from a runchat workflow URL:
+
+- For this URL: [`https://runchat.app/editor?id=f9b5e88e-3738-4b9e-9c0b-a471bcee7d0a`](https://runchat.app/editor?id=f9b5e88e-3738-4b9e-9c0b-a471bcee7d0a)
+- The id is [`f9b5e88e-3738-4b9e-9c0b-a471bcee7d0a`](https://runchat.app/editor?id=f9b5e88e-3738-4b9e-9c0b-a471bcee7d0a) (everything after `id=`)
+
+Once you connect your id to the runchat node the inputs and outputs of the node will reflect that of your Runchat workflow.
+
+### 5. Try out some of the examples
+
+The following examples show some common use cases of Runchat in Grasshopper. You can find links to the Runchats as well as Grasshopper definitions below.
+
+<Info>
+Download the examples here: <a href = "/public/gh-examples.zip">GH Examples</a>
+</Info>
+
+<CardGroup cols={2}>
+  <Card
+    title="Intro"
+    href="https://www.runchat.app/editor?id=f9b5e88e-3738-4b9e-9c0b-a471bcee7d0a"
+  >
+    Chat with AI directly from grasshopper
+  </Card>
+  <Card
+    title="Script Generation"
+    href="https://www.runchat.app/editor?id=f9b5e88e-3738-4b9e-9c0b-a471bcee7d0a"
+  >
+    Generate a python script to solve a problem
+  </Card>
+  <Card
+    title="Control Component"
+    href="https://www.runchat.app/editor?id=ed1f657c-1291-4802-9354-13c183a1366e"
+  >
+    Use natural language to set grasshopper parameters
+  </Card>
+  <Card
+    title="Text to 3D - Generate Meshes"
+    href="https://www.runchat.app/editor?id=27e8b8dd-86c2-4175-8ea5-777fa9a1704e"
+  >
+    Generate a 3d model from natural language inputs (requires a
+    [Fal.ai](http://Fal.ai) API key) 
+  </Card>
+  <Card
+    title="Text to 3D - Generate Images"
+    href="https://www.runchat.app/editor?id=8d1d7ef1-8cd2-4590-bed5-225d2859548b"
+  >
+    Generate an image from natural language inputs (requires a
+    [Fal.ai](http://Fal.ai) API key)
+  </Card>
+  <Card
+    title="Fix Rhino / Grasshopper Script Bugs"
+    href="https://www.runchat.app/editor?id=f9b5e88e-3738-4b9e-9c0b-a471bcee7d0a"
+  >
+    Fix issues with your python scripts or with generated scripts until your
+    definitions work! *The Fix Bugs example uses the Fologram plugin for
+    Grasshopper. You can find Fologram in the Rhino Package Manager.*
+  </Card>
+  <Card
+    title="Edit Images"
+    href="https://www.runchat.app/editor?id=edcd0aa0-dcf1-4d8c-b268-899d8a0a3d3f"
+  >
+    Edit an image or screenshot with natural language (requires a Gemini API
+    key)
+  </Card>
+</CardGroup>

@@ -1,0 +1,24 @@
+---
+title: 'Data Referencing'
+description: 'Learn how to reference output data from nodes without creating edges'
+---
+
+<img src="/images/reference.png" style={{ borderRadius: '0.5rem' }} />
+
+Sometimes it is more convenient to directly referencing node output data within a text input instead of connecting it to an input parameter.
+This is the case when we want to build template strings where we replace some variables with user-defined content. 
+For instance, we might want to build an app or tool where a user can specify a city as well as something they need to do there. 
+We could have two published text input parameters that allow a user to set these values, then build our prompt by inserting this text using data referencing.
+
+## Parameters UI
+
+To insert the value of a parameter into a text input, first start writing some text into the input then press `Tab` to display the parameters menu.
+Hover over an option in the list to preview which node it is referencing. Click to insert a tag into the text field that represents the current output value.
+To delete a referenced parameter, click the X or press backspace. 
+
+## Run order
+
+Unlike passing data with edges, referencing a parameter will *not* automatically schedule node updates when the referenced parameter changes.
+Instead, whenever the node runs, it will retrieve the current value of the referenced parameter from the workflow. 
+When nodes in a workflow are not connected by edges, they will still run from left to right with nodes located further to the left on the canvas being updated before nodes to the right.
+If you want to ensure that the parameter you are referencing runs before it is referenced, place the node with the referenced parameter to the left on the canvas. 

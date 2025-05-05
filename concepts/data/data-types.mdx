@@ -1,0 +1,117 @@
+---
+title: 'Data Types'
+description: 'Learn how runchat formats and converts between different common data types'
+---
+
+All nodes in Runchat store data in a specific format that allows the node to perform calculations. 
+The data format type is indicated by the colour of node input and output parameters and edges. 
+When you connect parameters of different types, Runchat will try to convert or "cast" the data from the output type to the input type. 
+Runchat supports casting between all common data types. Data that has been cast is indicated by a gradient coloured edge. 
+
+## Files and URLs
+
+Runchat will always try to upload images and files to our servers and return a url string that represents the file content. 
+This allows workflow file sizes to remain small and latency to be kept to a minimum. 
+
+## Objects
+
+Object (specifically JSON objects) are strings with a special notation used to describe properties of things. Objects are made up of strings called `keys` , each with a `value` that can be any data type you like - including another object. Objects are always written in the same format: 
+
+```jsx
+{ 
+"key": "value"
+}
+```
+
+The start and end with curly braces `{}`, and keys and values are always separated by a `:`. 
+
+Because a lot of third party APIs (including language models and services like youtube) return data in object format, runchat needs to work with them. Runchat defaults to the object input for object types, where you can easily add keys and values including creating nested objects. 
+
+## Arrays
+
+An array is a list of other data types. All runchat parameter data is stored as an array. If a parameter has more than one thing in this array, runchat will display a pagination UI on the node to allow you to step through inputs and outputs.
+
+## Runchat Parameters, Types and UI
+<Card title="String (Emerald)">
+  UI Type: text, Data Type: string (text)
+</Card>
+
+<Card title="Number (Purple)">
+  UI Type: slider, Data Type: number (numeric value)
+</Card>
+
+<Card title="Boolean (Purple)">
+  UI Type: toggle, Data Type: boolean (true/false value)
+</Card>
+
+<Card title="Object (Amber)">
+  UI Type: object, Data Type: object (key-value pairs)
+</Card>
+
+<Card title="Image (Orange)">
+  UI Type: image, Data Type: string (URL or base64 encoded image data)
+</Card>
+
+<Card title="Video (Orange)">
+  UI Type: video, Data Type: string (URL or base64 encoded video data)
+</Card>
+
+<Card title="Audio (Orange)">
+  UI Type: audio, Data Type: string (URL or base64 encoded audio data)
+</Card>
+
+<Card title="Model (Dark Teal)">
+  UI Type: model, Data Type: string (model identifier)
+</Card>
+
+<Card title="Message (Blue)">
+  UI Type: context, Data Type: Message (structured message object)
+</Card>
+
+<Card title="Context (Blue)">
+  UI Type: context, Data Type: Context (collection of messages)
+</Card>
+
+<Card title="Code (Slate)">
+  UI Type: code, Data Type: string (code snippet)
+</Card>
+
+<Card title="Array (Amber)">
+  UI Type: text, Data Type: Array (list of items)
+</Card>
+
+<Card title="Instruction (Gray)">
+  UI Type: instruction, Data Type: string (instructional text)
+</Card>
+
+<Card title="Null (Slate)">
+  UI Type: text, Data Type: null (absence of a value)
+</Card>
+
+<Card title="Markdown (Emerald)">
+  UI Type: markdown, Data Type: string (text formatted with Markdown)
+</Card>
+
+<Card title="File (Dark Teal)">
+  UI Type: file, Data Type: string (file path or content identifier)
+</Card>
+
+<Card title="Format (Slate)">
+  UI Type: format, Data Type: any (formatting instructions, e.g., JSON schema)
+</Card>
+
+<Card title="HTML (Slate)">
+  UI Type: html, Data Type: string (HTML content)
+</Card>
+
+<Card title="PDF (Dark Teal)">
+  UI Type: pdf, Data Type: string (PDF content identifier, e.g., URL or base64)
+</Card>
+
+<Card title="Trigger (Slate)">
+  UI Type: button, Data Type: string (trigger signal or identifier)
+</Card>
+
+<Card title="Select (Slate)">
+  UI Type: select, Data Type: SelectOptions (list of choices and the current selection)
+</Card>
