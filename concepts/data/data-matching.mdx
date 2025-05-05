@@ -4,8 +4,11 @@ description: 'Learn how Runchat approaches matching data from multiple parameter
 ---
 When a node has multiple input parameters Runchat will try to match data from each parameter during the calculation. 
 Some input parameters allow you to control whether data matching should be applied to each item individually, or to a merged list of all items.
+These parameters will show an `Each` or `Merge` button to toggle between the matching heuristic.
 
-### Each Item
+<img src="/images/eachMerge.png" style={{ borderRadius: '0.5rem' }} />
+
+### Each Item 
 
 Individual items will be passed to the script independently of one another. This is primarily useful for avoiding boilerplate for-each iterators within your scripts. 
 
