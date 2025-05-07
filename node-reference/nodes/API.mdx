@@ -1,33 +1,60 @@
 ---
 title: "API"
-description: "Make HTTP requests to third party apis and websites"
+description: "Make HTTP requests to third-party APIs and websites"
 ---
 
-# URL Input
+The API node enables you to make HTTP requests to external services and APIs. This node supports various HTTP methods and allows you to configure request headers, body content, and authentication.
 
-This is the URL of the API endpoint you want to make a request to. If your API endpoint uses a url with query parameters, see this guide for [developing a tool for parametrically working with query parameters in the API node](https://www.notion.so/Making-requests-with-Query-Strings-17e2742769ce803b937ae99372a25f2a?pvs=21). 
+## Inputs
 
-# Method Input
+### URL Input
+The URL of the API endpoint you want to request. For endpoints that use query parameters, refer to our guide on [working with query parameters in the API node](https://www.notion.so/Making-requests-with-Query-Strings-17e2742769ce803b937ae99372a25f2a?pvs=21).
 
-The HTTP method to request on the required resource. This can be `GET`, `POST`, `PUT`, `PATCH`, `DELETE`. 
+### Method Input
+The HTTP method to use for the request. Supported methods include:
+- `GET`: Retrieve data
+- `POST`: Create new data
+- `PUT`: Update existing data
+- `PATCH`: Partially update data
+- `DELETE`: Remove data
 
-# Header Input
+### Header Input
+HTTP headers to include with your request. Common headers include:
+- Authorization credentials
+- Content-Type specifications:
+  - `application/json` - For JSON data
+  - `application/x-www-form-urlencoded` - For form data
+  - `application/xml` - For XML data
+  - `multipart/form-data` - For file uploads with text fields (experimental)
+  - `text/plain` - For plain text
+  - `application/octet-stream` - For binary data (images, PDFs, etc.)
+- Custom API-specific headers
 
-The headers to send with the request. These typically include authorization credentials and content type specifications. **Never enter API keys as text in the API header as these can be exposed to anyone with access to your Runchat**. [Instead, always use the Credentials menu to securely add API keys and credentials to your requests.](https://www.notion.so/Credentials-and-Encrypted-Keys-in-Inputs-1832742769ce8075bb33f1a6b9e7b3ed?pvs=21) 
+> ⚠️ **Security Note**
+> Never include API keys directly in the header input. Instead, use the [Credentials menu](https://www.notion.so/Credentials-and-Encrypted-Keys-in-Inputs-1832742769ce8075bb33f1a6b9e7b3ed?pvs=21) to securely manage your authentication credentials.
 
-# Body Input
+> ℹ️ **Note on Multipart/Form-Data**
+> The multipart/form-data support is currently experimental. When uploading files with text fields, note that the UX is limited as it only works with string values.
 
-The request body. This can be a string or JSON object. The exact content of the request body will typically depend on the schema of the API endpoint you are making a request to. Be sure to read the API documentation to understand how to format content in the request body. 
+### Body Input
+The request payload, which can be either a string or JSON object. The format and content of the body depend on the API's requirements. Always refer to the API documentation for the correct body structure.
 
-# Making requests with the API Node
+## Getting Started
 
-To make a request with the API node you will typically need to: 
+To make your first API request:
 
-- Obtain an API key from the service you are making a request to and add this to your Secrets and Variables in [runchat.app/dashboard/keys](http://runchat.app/dashboard/keys)
-- Check the API documentation for endpoint urls and query parameters
-- Check the API documentation for header fields and how to send your credentials.
-- Check the API documentation for how to format your request body
+1. **Set up authentication**:
+   - Obtain an API key from your service provider
+   - Add the key to your [runchat.app/dashboard/keys](http://runchat.app/dashboard/keys)
 
-It is usually a good idea to make your first request using example data provided by most API documentation. Once this is working, substitute your own data. 
+2. **Configure your request**:
+   - Review the API documentation for the correct endpoint URL
+   - Verify required headers and authentication method
+   - Format the request body according to the API specifications
 
-If API documentation provides example cURL commands, [you can automatically format these for the API node using Prompt formats or tools.](https://www.notion.so/Working-with-cURL-1822742769ce80999d97e41a5d01a224?pvs=21)
+3. **Test your request**:
+   - Start with example data from the API documentation
+   - Verify the response format and status codes
+   - Once confirmed working, substitute with your actual data
+
+**Pro Tip**: If the API documentation provides cURL examples, you can [automatically convert them to API node format](https://www.notion.so/Working-with-cURL-1822742769ce80999d97e41a5d01a224?pvs=21) using our built-in tools.
