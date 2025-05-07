@@ -28,3 +28,10 @@ A while-loop runs until a condition is met.
 You can create while loops in Runchat by referencing an output parameter in your workflow. 
 While this parameter evaluates to `true` the loop will run. When the parameter evaluates to `false` the loop will stop.
 The maximum runs for a while-loop is still 100. 
+
+## Referencing outputs with loop edges
+
+<img src="/images/memory.png" style={{ borderRadius: '0.5rem' }} />
+
+You can use loop edges that run zero times to pass node outputs directly to inputs. 
+This is useful for creating chat histories (that can continue previous conversations), or adding items to a list over time, or creating counters, or anything else that needs memory of past outputs. 
