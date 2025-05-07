@@ -5,9 +5,20 @@ description: 'Learn how to pass data upstream with loops'
 
 <img src="/images/loop.png" style={{ borderRadius: '0.5rem' }} />
 
+# Loop Edges
+
 Runchat supports passing data upstream to define recursive tools and processes. 
-This enables applications like generate-critique workflows, website crawling and task orchestration. 
+This enables applications like generate-critique workflows, iterating over paginated APIs, website crawling and task orchestration. 
 You can create a loop by connecting an output parameter of a node to an input parameter of an upstream node.
+
+### Update Heuristics
+
+<img src="/images/loopUpdates.png" style={{ borderRadius: '0.5rem' }} />
+
+Nodes that have both upstream and downstream connections to the source and target nodes in the loop will be run during the loop. 
+The immediate children of these nodes will also be run during the loop. 
+This allows for things like incrementally adding to a list while a loop runs without needing to continue passing this list through to the loop source. 
+Downstream nodes from these children are not run during the loop. See the image above for when dependent nodes will run. 
 
 <Info>
 Note that Runchat loops over each input to a parameter and runs calculations in parallel. 
