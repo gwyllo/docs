@@ -29,6 +29,6 @@ A simple example of working with webhooks is setting up an endpoint that saves a
 
 https://www.runchat.app/editor?id=86751e7d-5396-4ca9-b1c2-6a1d18b475ad
 
-To run this Runchat, you’ll need to first [authorize Google Sheets](https://www.notion.so/Read-and-Write-to-Google-Sheets-17f2742769ce8055930ddcd04fb417e8?pvs=21) from the Runchat Dashboard. The runchat itself is very simple - we have a `Webhook` node connected to the data input of the `Write Sheet` node from the Google Sheets library. 
+To run this Runchat, you’ll need to first [authorize Google Sheets](/acounts) from the Runchat Dashboard. The runchat itself is very simple - we have a `Webhook` node connected to the data input of the `Write Sheet` node from the Google Sheets library. 
 
 You can try triggering this webhook from anywhere on the internet by making a post request to the endpoint url listed on the webhook node. Your post request will need to include your Runchat API key in the header using the `Authorization` key. You can include anything you like in the body, so long as it is valid JSON.

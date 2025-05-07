@@ -22,7 +22,7 @@ Most Runchats use the code node in some way, often nested several nodes deep for
 
 # Inputs and Outputs
 
-The default input to the `Code` node is called `inputData`. You can refer to this parameter by name in your code. You can add additional parameters using the [Parameter Manager](https://www.notion.so/Input-Parameter-Manager-d8ade639e3954ec9b6f91e3c4603e585?pvs=21). For instance, to simply pass the input value through to the output, you can run: 
+The default input to the `Code` node is called `inputData`. You can refer to this parameter by name in your code. You can add additional parameters using the Parameter Manager. For instance, to simply pass the input value through to the output, you can run: 
 
 ```jsx
 return inputData;
@@ -89,7 +89,7 @@ After adding a parameter it will appear on the left side of the node in alphabet
 
 ## Accessing parameters
 
-All parameters to the code node are zipped and then passed to your script. [You can specify whether individual items or lists should be zipped by toggling these values on the parameters themselves.](https://www.notion.so/Data-Access-f190b6fe7649435b8212b9f6baca09b4?pvs=21) You can access each parameter value in your script by referring to the parameter name.
+All parameters to the code node are zipped and then passed to your script. [You can specify whether individual items or lists should be zipped by toggling these values on the parameters themselves.](/concepts/data/data-matching) You can access each parameter value in your script by referring to the parameter name.
 
 If your parameter is set to List access, then you can also access items through array indexing.
 

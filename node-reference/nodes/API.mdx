@@ -5,7 +5,7 @@ description: "Make HTTP requests to third party apis and websites"
 
 # URL Input
 
-This is the URL of the API endpoint you want to make a request to. If your API endpoint uses a url with query parameters, see this guide for [developing a tool for parametrically working with query parameters in the API node](https://www.notion.so/Making-requests-with-Query-Strings-17e2742769ce803b937ae99372a25f2a?pvs=21). 
+This is the URL of the API endpoint you want to make a request to. If your API endpoint uses a url with query parameters, [you can reference them directly into the url](/concepts/data/data-referencing). 
 
 # Method Input
 
@@ -13,7 +13,7 @@ The HTTP method to request on the required resource. This can be `GET`, `POST`, 
 
 # Header Input
 
-The headers to send with the request. These typically include authorization credentials and content type specifications. **Never enter API keys as text in the API header as these can be exposed to anyone with access to your Runchat**. [Instead, always use the Credentials menu to securely add API keys and credentials to your requests.](https://www.notion.so/Credentials-and-Encrypted-Keys-in-Inputs-1832742769ce8075bb33f1a6b9e7b3ed?pvs=21) 
+The headers to send with the request. These typically include authorization credentials and content type specifications. **Never enter API keys as text in the API header as these can be exposed to anyone with access to your Runchat**. [Instead, always use the Credentials menu to securely add API keys and credentials to your requests.](/concepts/integrations/credentials) 
 
 # Body Input
 
@@ -30,4 +30,4 @@ To make a request with the API node you will typically need to:
 
 It is usually a good idea to make your first request using example data provided by most API documentation. Once this is working, substitute your own data. 
 
-If API documentation provides example cURL commands, [you can automatically format these for the API node using Prompt formats or tools.](https://www.notion.so/Working-with-cURL-1822742769ce80999d97e41a5d01a224?pvs=21)
+If API documentation provides example cURL commands, you can automatically format these for the API node using Prompt formats or tools.
