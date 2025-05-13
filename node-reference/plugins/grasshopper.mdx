@@ -21,53 +21,38 @@ description: "Generate code and 3D models within Grasshopper"
 - Search for Runchat and Install it
 - Restart rhino before continuing
 
-### 2. Add a Runchat Node in Grasshopper
+### 2. Download the examples
 
-- Runchat will appear in the top toolbar
-- You can find the Runchat node in the toolbar, or by searching for Runchat
+Head to the [Examples page](/node-reference/plugins/examples) to download example grasshopper definitions and learn from their matching Runchats. 
+Or if you just want to download the grasshopper files to get started you can grab them here: 
+<Info>
+  Download a ZIP file of all examples here:
+  <a href="https://storage.runchat.app/gh-examples.zip">GH Examples ZIP</a>
+</Info>
 
-### 3. Provide an API key
+Once you've unzipped the examples folder, open the 01_BasicDemo.gh in Grasshopper.
 
-- Head to [`runchat.app`](http://runchat.app) and create an account
+### 3. Link your API key and connect accounts 
+
+You will need to create a Runchat API key to connect Grasshopper to your Runchat account. 
+
+- Head to [`runchat.app`](http://runchat.app) and create an account or sign in
 - Verify your account by following the link sent to your email address
-
-**Generate an API key**
-
 - Whilst logged into your account:
   - Proceed to [runchat.app/dashboard/keys](http://runchat.app/dashboard/keys)
   - Scroll to the bottom and under the heading `Runchat API Keys (Early Access)` press "Create New Key"
   - Copy your key to your clipboard
 
-**Add the API key to the Runchat Node**
+Back in Grasshopper, open the 01_BasicDemo.gh file. Right-click the Runchat component and paste your API key in the text field that says "Set API Key".
+Press enter to save the key. Your Runchat account is now linked and you can run the examples! Some examples need you to connect other services to 
+generate images or text. Check the [Accounts page](/accounts) to learn how to set this up. 
 
 <Check>
   The API key is stored as a local environment variable and is not saved with
   your Grasshopper definition.
 </Check>
 
-Enter your API key in the text field that says "Set API Key"
-
-- Right click on the Runchat Node
-- In the text field that says "Set API Key" paste your key and press enter
-
-### 4. Get the ID of your Runchat
-
-Runchat is a node-based editor that runs in your browser. You will need to tell the Runchat grasshopper node which Runchat workflow you want to run.
-
-To do this you'll need to provide an `id` for the Runchat.
-
-The `id` can be extracted from a runchat workflow URL:
-
-- For this URL: [`https://runchat.app/editor?id=f9b5e88e-3738-4b9e-9c0b-a471bcee7d0a`](https://runchat.app/editor?id=f9b5e88e-3738-4b9e-9c0b-a471bcee7d0a)
-- The id is [`f9b5e88e-3738-4b9e-9c0b-a471bcee7d0a`](https://runchat.app/editor?id=f9b5e88e-3738-4b9e-9c0b-a471bcee7d0a) (everything after `id=`)
-
-Once you connect your id to the runchat node the inputs and outputs of the node will reflect that of your Runchat workflow.
-
-### 5. Try out some of the examples
-
-Head to the [Examples page](/node-reference/plugins/examples) to download example grasshopper definitions and learn from their matching Runchats.
-
-### 6. Learn how to create your own apps
+### 4. Create your own apps
 
 <iframe
   width="560"
