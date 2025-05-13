@@ -109,6 +109,7 @@
                 "group": "Plugins",
                 "pages": [
                   "node-reference/plugins/grasshopper",
+                  "node-reference/plugins/examples",
                   {
                     "group": "Components",
                     "pages": [
