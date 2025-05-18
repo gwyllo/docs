@@ -138,7 +138,7 @@
               },
               {
                 "group": "Sales and Marketing",
-                "pages": []
+                "pages": ["examples/marketing/extract-tweets"]
               },
               {
                 "group": "Analysis",

@@ -1,0 +1,31 @@
+---
+title: "Extract Tweets"
+description: "Derive insights from blog posts and generate short form content with images"
+---
+
+<Card
+  title="Editor View"
+  href="https://www.runchat.app/editor?id=7e343007-eecd-4eb3-8132-e5d18dc764af"
+>
+  Open the example in the Runchat editor
+</Card>
+
+<img src="/images/examples/tweetFromBlog.png" style={{ borderRadius: "0.5rem" }} />
+
+### Inputs
+
+`url`
+
+The url to the blog post that you want to extract tweets from.
+
+### Outputs
+
+`result`
+
+A list of JSON objects representing tweets. Each object contains a post title, post content and link to abstract image.
+
+## Use and applications
+
+After generating the tweet objects you could connect a social media service to runchat to post them automatically. 
+You can get more creative with image generation for blog posts - we could extract the image from the blog post itself, 
+use a different prompt to generate more relevant images or search the internet for something appropriate.
