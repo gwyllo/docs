@@ -120,6 +120,39 @@
                 ]
               }
             ]
+          },
+          {
+            "group": "Examples",
+            "pages": [
+              {
+                "group": "Design",
+                "pages": [
+                  "examples/design/generate-3d-models",
+                  "examples/design/edit-images",
+                  "examples/design/create-image-variations"
+                ]
+              },
+              {
+                "group": "Research",
+                "pages": []
+              },
+              {
+                "group": "Sales and Marketing",
+                "pages": []
+              },
+              {
+                "group": "Analysis",
+                "pages": []
+              },
+              {
+                "group": "Productivity",
+                "pages": ["examples/productivity/runchat-to-markdown"]
+              },
+              {
+                "group": "Entertainment",
+                "pages": []
+              }
+            ]
           }
         ]
       },
