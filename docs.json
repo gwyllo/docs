@@ -134,7 +134,7 @@
               },
               {
                 "group": "Research",
-                "pages": []
+                "pages": ["examples/research/summarize-arxiv"]
               },
               {
                 "group": "Sales and Marketing",

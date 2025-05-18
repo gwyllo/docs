@@ -1,0 +1,32 @@
+---
+title: "Summarize Arxiv Articles"
+description: "Iteratively fetches arxiv articles matching a query from within the last week and provides a concise summary"
+---
+
+<Card
+  title="Editor View"
+  href="https://www.runchat.app/editor?id=4c018c4b-616f-47d5-bdf2-9862fcaa23ac"
+>
+  Open the example in the Runchat editor
+</Card>
+
+<img src="/images/examples/summarizeArxiv.png" style={{ borderRadius: "0.5rem" }} />
+
+
+### Inputs
+
+`query`
+
+The query to search arxiv for e.g. "generative ai"
+
+### Outputs
+
+`content`
+
+A summary of findings from all collected articles
+
+## Use and applications
+
+This is an advanced example that demonstrates how to run api requests in a loop, accumulate them over time and scrape XML data 
+to reduce context size in the prompt node. It could be customized and extended in several ways, for instance by 
+providing more specific guidance on concepts the user is interested in, fetching and summarizing the full article HTML or PDF content, or running this workflow on a schedule to collect research over time. 
