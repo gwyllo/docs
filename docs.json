@@ -138,7 +138,10 @@
               },
               {
                 "group": "Research",
-                "pages": ["examples/research/summarize-arxiv"]
+                "pages": [
+                  "examples/research/summarize-arxiv",
+                  "examples/research/search-property"
+                ]
               },
               {
                 "group": "Sales and Marketing",
