@@ -33,7 +33,11 @@
               },
               {
                 "group": "Nodes",
-                "pages": ["concepts/nodes/models", "concepts/nodes/parameters"]
+                "pages": [
+                  "concepts/nodes/models",
+                  "concepts/nodes/parameters",
+                  "concepts/nodes/subflows"
+                ]
               },
               {
                 "group": "Integrations",
