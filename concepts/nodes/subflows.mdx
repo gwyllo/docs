@@ -1,0 +1,33 @@
+---
+title: "Subflows"
+description: "You can expand runchat nodes and prompts with tool calls to view and edit their internal state"
+---
+
+# Expanding and collapsing runchat nodes
+
+You can publish any runchat workflow to a library and then use it as a node within some other workflow. We call these nodes Tools.
+After you run a Tool in a workflow, the internal state of the tool (all input and output parameters) will be saved on that node.
+You can then view this internal state (called a subflow) to see exactly how data flowed through the logic of the tool by clicking the `ArrowsOut` icon
+in the node settings bar. You can collapse the workflow back into a single node by pressing the button again. 
+
+<Info>
+The expand and collapse toggle will be disabled until you run the runchat and create some internal state to view. 
+</Info>
+
+# Expanding and collapsing prompt nodes
+
+You can also expand Prompt nodes to view the internal state of any Tools used by that node to return a response to your prompt. 
+First, add tools to the Prompt node in the node settings bar, then run the node. If a tool was used you will then be able to 
+expand the prompt node using the `ArrowsOut` button in the settings bar. 
+
+# Internal state
+
+The expanded view shows the internal state of the tool when it was last run. 
+If you run the parent node (prompt or runchat) again, the inputs and outputs of the child nodes will update to reflect this new state. 
+This is a useful diagnostic tool for detecting bugs in workflow logic or flaws in prompts. 
+
+
+# Editing subflows
+
+You can make changes to nodes in a subflow (e.g. to code or prompts) and these will be saved as a custom override to the Tool.
+This is useful for quickly exploring variations on prompts or fixing bugs. 
