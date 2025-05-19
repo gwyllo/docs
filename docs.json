@@ -142,7 +142,10 @@
               },
               {
                 "group": "Sales and Marketing",
-                "pages": ["examples/marketing/extract-tweets"]
+                "pages": [
+                  "examples/marketing/extract-tweets",
+                  "examples/marketing/landing-page-copy"
+                ]
               },
               {
                 "group": "Analysis",
