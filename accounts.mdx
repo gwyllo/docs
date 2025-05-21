@@ -18,13 +18,13 @@ Runchat Pro includes some Gemini credits so you can start using Runchat without 
 
 You can connect Runchat to any other restful API on the internet by [securely linking your API key on the dashboard](/concepts/integrations/credentials).
 Runchat will automatically extend the functionality of some nodes when you add supported services. 
-These include using Fal to add models to the `Image`  node, and OpenRouter, Groq and Cerebras to add models to the `Prompt` node. 
+These include using Fal to add models to the `Media`  node, and OpenRouter, Groq and Cerebras to add models to the `Prompt` node. 
 
 ### Connecting OpenRouter for OpenAI, Anthropic and free models
 
 You can use Runchat entirely for free by linking an OpenRouter account. OpenRouter serves models from most of the major research labs, including experimental and free models with rate limits. To connect OpenRouter, visit https://openrouter.ai and create an account. Then from the keys dashboard at  https://runchat.app/dashboard/keys click `Authorize OpenRouter`. This will open a popup where you will be prompted to sign in to your OpenRouter account and then Authorize Runchat. Enter a max spend cap if you want (if you don’t have any open router credits you don’t need to) then click Authorize the return to the Runchat Dashboard. You can now install models from OpenRouter on the [models page](/concepts/nodes/models) and these will appear as options in the `Prompt` node settings.
 
-### Connecting Fal for images
+### Connecting Fal for media
 
 <iframe
   width="560"
@@ -36,16 +36,16 @@ You can use Runchat entirely for free by linking an OpenRouter account. OpenRout
   allowfullscreen
 ></iframe>
 
-Fal is a fast inference provider for generative AI models. They host models to generate and edit images, video, audio and text. Runchat uses Fal as the default provider for image generation in the `Image Node`. When you connect Fal, Runchat will automatically add options to the `Image Node` settings that will allow you to choose from fast and low-cost models (Stable Diffusion Turbo), models with a good tradeoff of price and quality (Flux schnell and Flux Dev) and high quality models (Flux Pro and Recraft). Recraft can be used to generate vector graphics as well as raster images. 
+Fal is a fast inference provider for generative AI models. They host models to generate and edit images, video, audio and text. Runchat uses Fal as the default provider for image generation in the `Media Node`. When you connect Fal, Runchat will automatically add options to the `Media node` settings that will allow you to choose from fast and low-cost models (Stable Diffusion Turbo), models with a good tradeoff of price and quality (Flux schnell and Flux Dev) and high quality models (Flux Pro and Recraft). Recraft can be used to generate vector graphics as well as raster images. 
 
 <aside>
 💡
 
-For more information on the `Image Node` check the [Guide](/node-reference/nodes/image). 
+For more information on the `Media node` check the [Guide](/node-reference/nodes/media). 
 
 </aside>
 
-To connect Fal, head to [fal.ai](http://fal.ai) and create an account. Then visit https://fal.ai/dashboard/keys and click Add Key. Leave the scope as “API”, enter a name to remember the key by (e.g. runchat) and click Create Key. Then copy the generated key, paste it into the Fal section on https://runchat.app/dashboard/keys and click `Add Fal Key` to encrypt it and add it to your Runchat account. Runchat will automatically detect this key and enable options to use high quality models in the `Image` node in the editor. 
+To connect Fal, head to [fal.ai](http://fal.ai) and create an account. Then visit https://fal.ai/dashboard/keys and click Add Key. Leave the scope as “API”, enter a name to remember the key by (e.g. runchat) and click Create Key. Then copy the generated key, paste it into the Fal section on https://runchat.app/dashboard/keys and click `Add Fal Key` to encrypt it and add it to your Runchat account. Runchat will automatically detect this key and enable options to use high quality models in the `Media` node in the editor. 
 
 ### Connecting Gemini
 

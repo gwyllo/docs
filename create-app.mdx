@@ -117,7 +117,7 @@ Every workflow in Runchat can be published as a tool to be re-used in other work
 To publish a tool, we need to specify which inputs we want to receive data, and which outputs we want to return data.
 Hover over the left-side parameter on our file node and click the Lighting Bolt icon to publish this input. 
 For language models (and people) to know what our tool does, we need to give this input a name and a description.
-Hover over the input parameter and double-click the `input` parameter name. Enter `image`. 
+Hover over the input parameter and double-click the `input` parameter name. Enter `Media`. 
 Then click the edit button on the form input on the node and enter "A base64 string or url to an image". 
 Hover over the right-side parameter on our prompt node and click the Lightning Bolt icon to publish the output of our tool. 
 
@@ -148,15 +148,15 @@ You can add multiple tools to a library, and can save a new version of your tool
 
 Runchat can be used to automate complex process-specific workflows by providing language models with access to custom tools you have created.
 Create a new Runchat by clicking the Runchat icon in the editor menu, then clicking New Runchat.
-Double-click and create an Image node. Enter "a humback whale" as the prompt and press play. 
-Now double-click and create a Describe Image node from your My Tools library. 
+Double-click and create an Media node. Enter "a humback whale" as the prompt and press play. 
+Now double-click and create a Describe Media node from your My Tools library. 
 Connect your image output to the image input of the tool and press play to describe it.
 
 <img src="/images/toolNode.png" style={{ borderRadius: '0.5rem' }} />
 
 We can also give our tool to a language model to describe images with our four specific properties of subject, content, media and colour.
 For instance, we can use this tool to process images with faster or cheaper language models that may not be multimodal. 
-Create a new Prompt node and connect the output of your image node to the blue Context input. Enter "describe this image in detail" as the prompt. 
+Create a new Prompt node and connect the output of your Media node to the blue Context input. Enter "describe this image in detail" as the prompt. 
 From the tools menu in the settings bar, search for "Describe Image" and click the result. 
 Press play to run the node and use our new tool. 
 

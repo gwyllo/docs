@@ -82,7 +82,7 @@
                   "node-reference/nodes/prompt",
                   "node-reference/nodes/code",
                   "node-reference/nodes/API",
-                  "node-reference/nodes/image"
+                  "node-reference/nodes/media"
                 ]
               },
               {
