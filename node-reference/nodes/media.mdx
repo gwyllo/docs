@@ -3,21 +3,23 @@ title: "Media"
 description: "Generate images, videos and 3d models with Fal"
 ---
 
-The media node is particularly useful for quickly illustrating concepts and ideas. 
-Runchat Pro includes 250 generations with the create node per month. Runchat Free includes a small number of generations to get you started. 
-If you need more, you can upgrade your plan or [link your own Fal account](/accounts). 
+The media node is particularly useful for quickly illustrating concepts and ideas.
+You can generate around 400 images or 200 meshes/videos with the media node on the Pro plan.
+If you need more, you can upgrade your plan or [link your own Fal account](/accounts).
 
-The media node will generate one output for each input, just like every other node in Runchat. This means if you provide a list of prompts, the node will generate a list of output media in parallel. 
-Generated images are displayed in a grid in both Editor view and App view. The media node has two parameters, `Prompt` and `Media`. 
+The media node will generate one output for each input, just like every other node in Runchat. This means if you provide a list of prompts, the node will generate a list of output media in parallel.
+Generated images are displayed in a grid in both Editor view and App view. The media node has two parameters, `Prompt` and `Media`.
 
 # Prompt
 
-Use the prompt input to describe what you want your image to look like. Newer, larger models are better at following prompts than older, smaller and cheaper models. When using `image-to-image` models your prompt is **still** used to describe the qualities of the overall image and can **not** be used as “direction” for how to change the image (”change the shoe to red” etc). For these use cases, consider using Fal models that support this kind of control using the API Node. 
+Use the prompt input to describe what you want your image to look like. Newer, larger models are better at following prompts than older, smaller and cheaper models. When using `image-to-image` models your prompt is **still** used to describe the qualities of the overall image and can **not** be used as “direction” for how to change the image (”change the shoe to red” etc). For these use cases, consider using Fal models that support this kind of control using the API Node.
 
 # Image
 
-Provide an image to generate media from. The image parameter is only displayed if you using a model that requires an input image (e.g. 3D or video generation, or other custom models on fal). 
+Provide an image to generate media from. The image parameter is only displayed if you using a model that requires an input image (e.g. 3D or video generation, or other custom models on fal).
 
 <Info>
-You can connect any more from Fal to use in the Media node.
-Just add the model from the [models page on the dashboard]{/concepts/nodes/models)}
+  When you generate multiple images with the media node these will be displayed
+  as a grid. You can drag and drop any image from this grid onto the canvas to
+  create a new node and work with this image directly.
+</Info>
